@@ -31,6 +31,7 @@ object main extends PApplet {
   	size(800, 670)
   	frameRate(60)
   	background(100)
+    imageMode(3)      //Center the images drawn
   	mode.init
   } 
 
@@ -57,7 +58,11 @@ object main extends PApplet {
     // Send the mouse button pressed to the state
     //Mode.mousePressed(mouseButton)
   }
-	
+  
+  override def mouseClicked() = {
+    PlayMode.towers += new BasicTower(mouseLocation())
+  }
+
 	
   /**
    * The main method that makes your application run and show.
