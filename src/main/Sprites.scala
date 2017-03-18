@@ -7,7 +7,8 @@ object Sprites {
   private val names = Map[String, String] (
       "grass" -> "grass.png",
       "wall" -> "wall.png",
-      "enemy" -> "enemy.png"
+      "enemy" -> "enemy.png",
+      "tower" -> "tower.png"
   )
   
   private val imagePath = "resources/images/"

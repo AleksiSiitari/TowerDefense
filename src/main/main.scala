@@ -55,7 +55,7 @@ object main extends PApplet {
 	
   override def mousePressed() = {
     // Send the mouse button pressed to the state
-    //Mode.mousePressed(mouseButton)
+    mode.mousePressed
   }
 	
 	
