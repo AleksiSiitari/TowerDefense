@@ -10,14 +10,20 @@ abstract class Towers(val position: Vector) {
   var range: Double
   val image_id = "tower"
   var cd = 0
-  var targetDistance: Option[Double]
+  
+  def targetDistance: Double = {
+    if(target.isDefined) {
+      (this.position.distanceToPoint(target.get.position))
+    }
+    else {9999}
+  }
   
   def draw(scale: Int)
   
   def shoot = {
     if(cd <= 0) {
-      PlayMode.projectiles += new Ammo(this.position, this.target.get.position, System.nanoTime())
-      cd = 15 
+      PlayMode.projectiles += new Ammo(this.position, this.target.get.position - main.offset, System.nanoTime())
+      cd = 20 
     }
     else {
       cd -= 1
@@ -26,8 +32,8 @@ abstract class Towers(val position: Vector) {
   }
   
   def checkTarget = {
-    if(target.isDefined && targetDistance.isDefined) {
-      if(targetDistance.get > range) {
+    if(target.isDefined) {
+      if(targetDistance > range || !target.get.isAlive) {
         target = None
       }
     }

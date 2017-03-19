@@ -7,9 +7,11 @@ import scala.util._
 
 object main extends PApplet {
   
+  var f = createFont("Arial", 16, true);
   var mode: Mode = PlayMode
 	var last_update = System.nanoTime()
 	var last_draw = System.nanoTime()
+	var offset = Vector(16,16)       //For compensating the offset in calculations from drawing images centered
 	/*
 	var dir: Map[String, Vector] = ("up" -> Vector(1,0),
 	                                "down" -> Vector(-1,0),
@@ -49,6 +51,8 @@ object main extends PApplet {
     last_draw = System.nanoTime()
     
     // Debug draw the fps and dt in ms
+    fill(0, 0, 0)
+    textFont(f,15)
     text(s"${(100.0/(dut)).round.toString} FPS", 25, 40)
 
   }
@@ -56,6 +60,12 @@ object main extends PApplet {
   override def mousePressed() = {
     // Send the mouse button pressed to the state
     mode.mousePressed
+  }
+  
+  override def keyPressed() = {
+    if (key == 32){
+      mode.keyPressed
+    }
   }
 	
 	

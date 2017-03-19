@@ -26,8 +26,8 @@ object GameMap {
   
   var mapTiles = Buffer(
       "*************************",
-      "*S----------------------*",
-      "*-----------------------*",
+      "-SSS--------------------*",
+      "-SSS--------------------*",
       "*********************---*",
       "*------------------**---*",
       "*---************---**---*",
@@ -103,17 +103,18 @@ object GameMap {
  
   def generateMap() = {
     for(x <- 0 until width; y <- 0 until height) {
-      var id = "grass"
+      var id = "grass2"
       var solid = false
     
       if(mapTiles(y)(x) == '*') {
-        id = "wall"
+        id = "wall2"
         solid = true
       }
       else if (mapTiles(y)(x) == 'S') {
         spawnerLocations += Vector(x,y)
       }
        else if (mapTiles(y)(x) == 'E') {
+         id = "finish"
          endLocation += Vector(x,y)
       }
 

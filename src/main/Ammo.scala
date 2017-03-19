@@ -8,6 +8,7 @@ class Ammo(start: Vector, target: Vector, spawnTime: Long) {
   var speed: Int = 2
   val image_id = "tower"
   var moveVector = (this.target - this.position).normalized()*this.speed
+  var damage: Int = 40
 
   def elapsedTime = {
     (System.nanoTime() - spawnTime)/1e9
@@ -17,10 +18,11 @@ class Ammo(start: Vector, target: Vector, spawnTime: Long) {
     elapsedTime > 5
   }
   
-  def remove = {}
+  def remove = {???}
   
   def collides(e: Enemy) = {
-    Math.sqrt(Math.pow(e.position.x - this.position.x , 2) + Math.pow(e.position.y - this.position.y, 2)) < 10
+    //Math.sqrt(Math.pow(e.position.x - this.position.x , 2) + Math.pow(e.position.y - this.position.y, 2)) < 20
+    this.position.distanceToPoint(e.position - main.offset) < 15
   }
     
   def move = this.position += moveVector

@@ -13,4 +13,6 @@ abstract class Mode {
   
   def mousePressed
   
+  def keyPressed
+  
 }

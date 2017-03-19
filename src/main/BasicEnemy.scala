@@ -7,8 +7,8 @@ class BasicEnemy extends Enemy {
   speed = 1.0
  
   //Chooses a random spawn positon from all possible
-  var rand = new Random(System.currentTimeMillis())
-  var random_index = rand.nextInt(GameMap.spawnerLocations.length)
+  var rand2 = new Random(System.currentTimeMillis())
+  var random_index = rand2.nextInt(GameMap.spawnerLocations.length)
   var result = GameMap.spawnerLocations(random_index)
   
   position = result*32

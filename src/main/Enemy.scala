@@ -1,6 +1,7 @@
 
 package main
 import scala.math._
+import scala.util._
 
 import processing.core._
 import scala.util.Random
@@ -8,17 +9,18 @@ import scala.util.Random
 abstract class Enemy {
   var maxHP: Int = 100
   var HP: Int = 100
+  var reward: Int = 10
   var speed: Double = 1.0
   var position: Vector = Vector(0,0)
   var loadedImage : Option[PImage] = None
   var curTarget = 0
   var target = Path1.points(curTarget)
-  
+  var rand = new Random
   val image_id = "enemy"
 
   def angle : Double = 0.0
   
-  def isAlive:Boolean = (HP > 0)
+  def isAlive:Boolean = HP > 0
   
   def draw(scale: Int)
   
@@ -44,6 +46,14 @@ abstract class Enemy {
     }
   }
   
+  def checkForEnemies = {
+    for(e <- PlayMode.enemies) {
+      if((this.position).distanceToPoint(e.position) < 15) {
+        this.position = this.position - (e.position - this.position).normalized()*3
+      }
+    }
+  }
+  
   def checkForTarget = {
     if ( this.position.distanceToPoint(this.target) < 20 && this.curTarget < Path1.points.length) {
       if(curTarget == Path1.points.length-1) {
@@ -54,6 +64,10 @@ abstract class Enemy {
         target = Path1.points(curTarget)
       }
     }
+  }
+  
+  def isHit = {
+    this.speed -= 0.1
   }
   
   def moveVector = (this.target - this.position).normalized()*this.speed

@@ -8,7 +8,11 @@ object Sprites {
       "grass" -> "grass.png",
       "wall" -> "wall.png",
       "enemy" -> "enemy.png",
-      "tower" -> "tower.png"
+      "tower" -> "tower.png",
+      "grass2" -> "grass2.png",
+      "wall2" -> "wall2.png",
+      "finish" -> "finish.png",
+      "UIrectangle" -> "UIrectangle.png"
   )
   
   private val imagePath = "resources/images/"
