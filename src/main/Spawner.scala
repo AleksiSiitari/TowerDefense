@@ -31,7 +31,12 @@ object Spawner {
     main.textAlign(3, 3)
     main.textFont(f,40)
     main.fill(204, 153, 0)
-    main.text("Press \"Space\" to continue", 400, 325)
+    if (waveNum == 0) {
+      main.text("Press \"Space\" to start", 400, 325)
+    }
+    else {
+      main.text("Press \"Space\" to continue", 400, 325)
+    }
   }
   }
   

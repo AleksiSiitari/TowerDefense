@@ -11,7 +11,7 @@ object PlayMode extends Mode {
   var enemies = Buffer[Enemy]()
   var towers = Buffer[Towers]()
   var projectiles = Buffer[Ammo]()
-  var buildAllowed = true
+  var texts = Buffer[InfoText]()
   var money = 100
   var time = 0
   
@@ -28,8 +28,7 @@ object PlayMode extends Mode {
   }
   
   def mousePressed = {
-    towers += new BasicTower(main.mouseLocation - main.offset)
-    money -= 50
+    Cursor.clicked
   }
   
   def keyPressed = {
@@ -42,8 +41,10 @@ object PlayMode extends Mode {
     enemies.foreach(_.draw(1))
     towers.foreach(_.draw(1))
     projectiles.foreach(_.draw(1))
+    texts.foreach(_.draw)
     GUI.draw
     Spawner.draw
+    
   }
   
   def update(dt: Double) = {
@@ -80,6 +81,13 @@ object PlayMode extends Mode {
         t.getTarget
       }
       else{t.shoot}
+    }
+    
+    /* Check for expired texts */
+    for(i <- texts) {
+      if(i.isExpired) {
+        texts.filter(_ != i)
+      }
     }
   }
   

@@ -3,6 +3,7 @@ package main
 class BasicTower(position: Vector) extends Towers(position: Vector){
   
   var range = 100.0
+  var cost = 50
   //var targetDistance: Option[Double] = None
    
   def draw(scale: Int) = {
