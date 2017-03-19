@@ -12,6 +12,7 @@ object PlayMode extends Mode {
   var towers = Buffer[Towers]()
   var projectiles = Buffer[Ammo]()
   var texts = Buffer[InfoText]()
+  var LargeTexts = Buffer[InfoText]()
   var money = 100
   var time = 0
   
@@ -42,6 +43,7 @@ object PlayMode extends Mode {
     towers.foreach(_.draw(1))
     projectiles.foreach(_.draw(1))
     texts.foreach(_.draw)
+    LargeTexts.foreach(_.draw)
     GUI.draw
     Spawner.draw
     
@@ -85,8 +87,13 @@ object PlayMode extends Mode {
     
     /* Check for expired texts */
     for(i <- texts) {
-      if(i.isExpired) {
+      if(i.isExpired) {                //FIXME: Does not remove expired texts
         texts.filter(_ != i)
+      }
+    }
+    for(i <- LargeTexts) {
+      if(i.isExpired) {
+        LargeTexts.filter(_ != i)
       }
     }
   }
