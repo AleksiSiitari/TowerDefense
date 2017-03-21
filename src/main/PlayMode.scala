@@ -29,7 +29,17 @@ object PlayMode extends Mode {
   }
   
   def mousePressed = {
-    Cursor.clicked
+    if(main.mouseLocation().y < 606) {
+      Cursor.clicked
+    }
+    else {
+      if(main.mouseLocation().x < 64) {
+        Cursor.selected = 1
+      }
+      else if (main.mouseLocation().x > 64) {
+        Cursor.selected = 2
+      }
+    }
   }
   
   def keyPressed = {
@@ -46,6 +56,7 @@ object PlayMode extends Mode {
     LargeTexts.foreach(_.draw)
     GUI.draw
     Spawner.draw
+    Cursor.draw
     
   }
   
@@ -68,7 +79,7 @@ object PlayMode extends Mode {
     
     for(e <- enemies) {
       e.checkForTarget
-      e.checkForWall
+      //e.checkForWall
       e.move(e.moveVector)
       e.checkForEnemies
       if(!e.isAlive) {
@@ -82,7 +93,9 @@ object PlayMode extends Mode {
       if(!t.target.isDefined){
         t.getTarget
       }
-      else{t.shoot}
+      else{
+        t.shoot
+      }
     }
     
     /* Check for expired texts */

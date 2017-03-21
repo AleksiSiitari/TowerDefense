@@ -12,6 +12,7 @@ object main extends PApplet {
 	var last_update = System.nanoTime()
 	var last_draw = System.nanoTime()
 	var offset = Vector(16,16)       //For compensating the offset in calculations from drawing images centered
+	var fastMode = false
 	/*
 	var dir: Map[String, Vector] = ("up" -> Vector(1,0),
 	                                "down" -> Vector(-1,0),
@@ -57,9 +58,18 @@ object main extends PApplet {
 
   }
 	
-  override def mousePressed() = {
+  override def mousePressed = {
     // Send the mouse button pressed to the mode
     mode.mousePressed
+    /*
+    if (mouseButton == LEFT) {    //FIXME: not working in processing 2.0
+      mode.mousePressed
+    }
+    else if (mouseButton == RIGHT) {
+      Cursor.selected = 0
+    }
+    *     * 
+    */
   }
   
   override def keyPressed() = {

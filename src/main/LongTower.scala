@@ -1,21 +1,23 @@
 package main
 
-class BasicTower(position: Vector) extends Towers(position: Vector){
+class LongTower(position: Vector) extends Towers(position: Vector) {
   
-  var range = 100.0
-  var cost = 50
+  var range = 500.0
+  var cost = 200
   cd = 0
-  //var targetDistance: Option[Double] = None
-  
+  image_id = "LongTower"
+    
   def shoot = {
     if(cd <= 0) {
       PlayMode.projectiles += new Ammo(this.position, this.target.get.position - main.offset, System.nanoTime())
-      cd = 50 
+      cd = 100 
     }
     else {
       cd -= 1
     }
   }
+  
+  
   
   
 }

@@ -5,8 +5,8 @@ import processing.core._
 class Ammo(start: Vector, target: Vector, spawnTime: Long) {
   var position: Vector = start
   var loadedImage : Option[PImage] = None
-  var speed: Int = 2
-  val image_id = "tower"
+  var speed: Int = 4
+  val image_id = "ammo"
   var moveVector = (this.target - this.position).normalized()*this.speed
   var damage: Int = 40
 

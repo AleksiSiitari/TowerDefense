@@ -55,7 +55,7 @@ abstract class Enemy {
   }
   
   def checkForTarget = {
-    if ( this.position.distanceToPoint(this.target) < 20 && this.curTarget < Path1.points.length) {
+    if ( this.position.distanceToPoint(this.target) < 10 && this.curTarget < Path1.points.length) {
       if(curTarget == Path1.points.length-1) {
         
       }
