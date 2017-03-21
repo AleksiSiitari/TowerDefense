@@ -14,7 +14,8 @@ object Sprites {
       "wall2" -> "wall2.png",
       "finish" -> "finish.png",
       "UIrectangle" -> "UIrectangle.png",
-      "ammo" -> "ammo.png"
+      "ammo" -> "ammo.png",
+      "buttonBlur" -> "button_blur.png"
   )
   
   private val imagePath = "resources/images/"

@@ -11,7 +11,7 @@ abstract class Mode {
   
   def draw(dt: Double)
   
-  def mousePressed
+  def mousePressed(key: Int)
   
   def keyPressed
   

@@ -8,7 +8,7 @@ import scala.util._
 object main extends PApplet {
   
   var f = createFont("Arial", 16, true);
-  var mode: Mode = PlayMode
+  var mode: Mode = MenuMode
 	var last_update = System.nanoTime()
 	var last_draw = System.nanoTime()
 	var offset = Vector(16,16)       //For compensating the offset in calculations from drawing images centered
@@ -60,7 +60,7 @@ object main extends PApplet {
 	
   override def mousePressed = {
     // Send the mouse button pressed to the mode
-    mode.mousePressed
+    mode.mousePressed(mouseButton)
     /*
     if (mouseButton == LEFT) {    //FIXME: not working in processing 2.0
       mode.mousePressed
@@ -83,7 +83,7 @@ object main extends PApplet {
    * The main method that makes your application run and show.
    */
   def main(args: Array[String]) {
-    val frame = new javax.swing.JFrame("TowerDefence")
+    val frame = new javax.swing.JFrame("TowerDefense")
 
     frame.getContentPane().add(this)
     init

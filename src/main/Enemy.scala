@@ -56,8 +56,9 @@ abstract class Enemy {
   
   def checkForTarget = {
     if ( this.position.distanceToPoint(this.target) < 10 && this.curTarget < Path1.points.length) {
-      if(curTarget == Path1.points.length-1) {
-        
+      if(curTarget == Path1.points.length-1) {  //Has reached the end
+        this.HP = 0
+        Player.lives -= 1
       }
       else {
         curTarget = curTarget + 1

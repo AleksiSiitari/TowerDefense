@@ -13,32 +13,42 @@ object PlayMode extends Mode {
   var projectiles = Buffer[Ammo]()
   var texts = Buffer[InfoText]()
   var LargeTexts = Buffer[InfoText]()
-  var money = 100
   var time = 0
+  
+  var btns = Buffer[Button](new Button(32, 638, 64, 64, "1"))
+
   
   def init () = {
     enemies.clear()
     towers.clear()
     projectiles.clear()
-    money = 100
+    Player.init
+    time = 0
+    Spawner.waveNum = 0
     GameMap.generateMap()
+    
   }
   
   def terminate() = {
     
   }
   
-  def mousePressed = {
-    if(main.mouseLocation().y < 606) {
-      Cursor.clicked
+  def mousePressed(key: Int) = {
+    if (key == 37) {
+      if(main.mouseY < 606) {
+        Cursor.clicked
+      }
+      else {
+        if(main.mouseX < 64) {
+          Cursor.selected = 1
+        }
+        else if (main.mouseX > 64) {
+          Cursor.selected = 2
+        }
+      }
     }
-    else {
-      if(main.mouseLocation().x < 64) {
-        Cursor.selected = 1
-      }
-      else if (main.mouseLocation().x > 64) {
-        Cursor.selected = 2
-      }
+    else {      //right mouse clears selection
+      Cursor.selected = 0
     }
   }
   
@@ -57,11 +67,18 @@ object PlayMode extends Mode {
     GUI.draw
     Spawner.draw
     Cursor.draw
+    btns.foreach(_.draw())
     
   }
   
   def update(dt: Double) = {
     Spawner.spawnWave
+    btns.foreach(_.update())
+    
+    if(!Player.isAlive) {
+      PlayMode.terminate()
+      main.mode = EndMode
+    }
     
     projectiles.foreach(_.move)
     for(p <- projectiles) {
@@ -84,7 +101,8 @@ object PlayMode extends Mode {
       e.checkForEnemies
       if(!e.isAlive) {
         enemies = enemies.filter(x => x != e)
-        this.money += e.reward
+        Player.money += e.reward
+        Player.enemiesSlain += 1
       }
     }
 
