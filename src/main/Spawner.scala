@@ -7,8 +7,9 @@ object Spawner {
   var f = main.createFont("Arial", 16, true); // Arial, 16 point, anti-aliasing on
   var waveNum = 0
   var ready = false
+  var waveTimer = 0
   
-  def waves(num: Int): Array[Enemy] = num match { //TODO: Fix spawning throwing enemies offscreen
+  def waves(num: Int): Array[Enemy] = num match { 
     case 0 => Array(new BasicEnemy)
     case 1 => Array(new BasicEnemy,new BasicEnemy,new BasicEnemy)
     case 2 => Array(new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy)
@@ -32,6 +33,9 @@ object Spawner {
     if(noEnemies && ready) {
       ready = false
       waves(waveNum).foreach(x => PlayMode.enemies += x)
+      for(e <- waves(waveNum)) {
+        var cd = 10
+      }
       waveNum += 1
     }
   }

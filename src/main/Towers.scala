@@ -26,7 +26,8 @@ abstract class Towers(val position: Vector) {
   
  def drawRange = {
     main.pushMatrix()
-    main.fill(0, 255, 0, 200)
+    main.fill(0, 255, 0, 50)
+    main.ellipseMode(2)
     main.ellipse(this.position.x+main.offset.x, this.position.y+main.offset.y, this.range.toFloat, this.range.toFloat)
     main.popMatrix()
   }

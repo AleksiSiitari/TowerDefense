@@ -15,10 +15,12 @@ object PlayMode extends Mode {
   var LargeTexts = Buffer[InfoText]()
   var time = 0
   
-  var btns = Buffer[Button](new Button(32, 638, 64, 64, "1"))
+  var btns = Buffer[InGameButton](new InGameButton(0, 606, 1, "towerButton", "towerButtonSelected"),
+                                  new InGameButton(64,606, 2, "longTowerButton", "longTowerButtonSelected"))
 
   
   def init () = {
+    Spawner.ready = false
     enemies.clear()
     towers.clear()
     projectiles.clear()
@@ -61,17 +63,21 @@ object PlayMode extends Mode {
     GameMap.draw
     enemies.foreach(_.draw(1))
     towers.foreach(_.draw(1))
+    if(Cursor.isOnTower || Cursor.selected != 0) {
+      towers.foreach(_.drawRange)
+    }
     projectiles.foreach(_.draw(1))
-    texts.foreach(_.draw)
-    LargeTexts.foreach(_.draw)
     GUI.draw
     Spawner.draw
     Cursor.draw
     btns.foreach(_.draw())
+    texts.foreach(_.draw)
+    LargeTexts.foreach(_.draw)
     
   }
   
   def update(dt: Double) = {
+    Cursor.isOnTower
     Spawner.spawnWave
     btns.foreach(_.update())
     

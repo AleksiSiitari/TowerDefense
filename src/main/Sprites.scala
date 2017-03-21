@@ -15,7 +15,11 @@ object Sprites {
       "finish" -> "finish.png",
       "UIrectangle" -> "UIrectangle.png",
       "ammo" -> "ammo.png",
-      "buttonBlur" -> "button_blur.png"
+      "buttonBlur" -> "button_blur.png",
+      "towerButton" -> "towerButton.png",
+      "towerButtonSelected" -> "towerButtonSelected.png",
+      "longTowerButton" -> "longTowerButton.png",
+      "longTowerButtonSelected" -> "longTowerButtonSelected.png"
   )
   
   private val imagePath = "resources/images/"
