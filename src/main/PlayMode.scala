@@ -15,8 +15,13 @@ object PlayMode extends Mode {
   var LargeTexts = Buffer[InfoText]()
   var time = 0
   
-  var btns = Buffer[InGameButton](new InGameButton(0, 606, 1, "towerButton", "towerButtonSelected"),
-                                  new InGameButton(64,606, 2, "longTowerButton", "longTowerButtonSelected"))
+  var btns = Buffer[InGameButton](new InGameButton(0, 606, 64, 64, 1, "towerButton", "towerButtonSelected"),
+                                  new InGameButton(64,606, 64, 64, 2, "longTowerButton", "longTowerButtonSelected")
+                                  )
+                                  
+  var tooltips = Map[InGameButton, Tooltips](btns(0) -> new Tooltips(Vector(0,574), "A Basic Tower \n $50", 2),
+                                             btns(1) -> new Tooltips(Vector(64, 574), "A long range tower \n $200", 2)
+                                             )
 
   
   def init () = {
@@ -73,6 +78,11 @@ object PlayMode extends Mode {
     btns.foreach(_.draw())
     texts.foreach(_.draw)
     LargeTexts.foreach(_.draw)
+    
+    btns.foreach{x => 
+      if(x.timeForTooltip) {
+        tooltips(x).draw
+    }}
     
   }
   

@@ -60,12 +60,26 @@ class Button(var x: Int, var y: Int, var w: Int, var h: Int, var text: String) {
 }
 
 
-class InGameButton(var x: Int, var y: Int, var number: Int, var image: String, var image2: String ) {
+class InGameButton(var x: Int, var y: Int, var w: Int, var h: Int, var number: Int, var image: String, var image2: String ) {
   var selected = false
+  var hover = false
   val normalImage = Sprites.get(image)
   val selectedImage = Sprites.get(image2)
-    
+  var onFor = 0
+  
+  
   def isOn() = Cursor.selected == this.number
+  
+  def timeForTooltip = onFor > 20
+  
+  def isHovering() = {
+    var px = main.mouseX
+    var py = main.mouseY
+    
+    var rw = if(hover) w+25 else w
+    
+    (px >= x-rw/2 && px <= x+rw/2 && py >= y-h/2 && py <= y+h/2)
+  }
   
   def draw() = {
     main.pushStyle()
@@ -84,12 +98,10 @@ class InGameButton(var x: Int, var y: Int, var number: Int, var image: String, v
   }
   
   def update() = {
-    /*
-    if(!hover && isOn) {
-      Sound.play("menuClick")		//Waiting for sounds
-    }
-    * 
-    */
     selected = isOn
+    if(isHovering) {
+      onFor += 1
+    }
+    else {onFor = 0}
   }
 }
