@@ -7,6 +7,7 @@ object Spawner {
   var f = main.createFont("Arial", 16, true); // Arial, 16 point, anti-aliasing on
   var waveNum = 0
   var ready = false
+  var waveOn = false
   var waveTimer = 0
   
   def waves(num: Int): Array[Enemy] = num match { 
@@ -40,13 +41,14 @@ object Spawner {
     }
   }
   
+  
   def draw = {
   if(noEnemies && !ready){
     main.textAlign(3, 3)
     main.textFont(f,40)
     main.fill(204, 153, 0)
     if (waveNum == 0) {
-      main.text("Press \"Space\" to start", 400, 325)
+      main.text("Press \"Space\" to start first wave", 400, 325)
     }
     else {
       main.text("Press \"Space\" to continue", 400, 325)

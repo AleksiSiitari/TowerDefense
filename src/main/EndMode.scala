@@ -22,7 +22,7 @@ object EndMode extends Mode {
     main.fill(204, 153, 0)
     main.text("You lost", 400, 150)
     main.textFont(f,30)
-    main.text("Money Spent: " + Player.moneySpent, 400, 200)
+    main.text("Money Spent: $ " + Player.moneySpent, 400, 200)
     main.text("Enemies Slain: " + Player.enemiesSlain, 400, 250)
 
   }

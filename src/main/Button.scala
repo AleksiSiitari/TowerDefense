@@ -76,9 +76,9 @@ class InGameButton(var x: Int, var y: Int, var w: Int, var h: Int, var number: I
     var px = main.mouseX
     var py = main.mouseY
     
-    var rw = if(hover) w+25 else w
+    var rw = w
     
-    (px >= x-rw/2 && px <= x+rw/2 && py >= y-h/2 && py <= y+h/2)
+    (px >= x && px <= x+w && py >= y && py <= y+h)
   }
   
   def draw() = {
