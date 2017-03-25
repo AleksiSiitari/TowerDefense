@@ -11,16 +11,21 @@ object PlayMode extends Mode {
   var enemies = Buffer[Enemy]()
   var towers = Buffer[Towers]()
   var projectiles = Buffer[Ammo]()
+  var abilities = Buffer[Ability]()
   var texts = Buffer[InfoText]()
   var LargeTexts = Buffer[InfoText]()
   var time = 0
   
   var btns = Buffer[InGameButton](new InGameButton(0, 606, 64, 64, 1, "towerButton", "towerButtonSelected"),
-                                  new InGameButton(64,606, 64, 64, 2, "longTowerButton", "longTowerButtonSelected")
+                                  new InGameButton(64,606, 64, 64, 2, "longTowerButton", "longTowerButtonSelected"),
+                                  new InGameButton(512, 606, 64, 64, 10, "playButton", "playButton"),
+                                  new InGameButton(128, 606, 64, 64, 3, "fire", "fire")
                                   )
                                   
   var tooltips = Map[InGameButton, Tooltips](btns(0) -> new Tooltips(Vector(0,574), "A Basic Tower \n $50", 2),
-                                             btns(1) -> new Tooltips(Vector(64, 574), "A long range tower \n $200", 2)
+                                             btns(1) -> new Tooltips(Vector(64, 574), "A long range tower \n $200", 2),
+                                             btns(2) -> new Tooltips(Vector(512, 574), "Press to start the\n next wave", 2),
+                                             btns(3) -> new Tooltips(Vector(128, 574), "Set fire \n $100", 2)
                                              )
 
   
@@ -49,12 +54,18 @@ object PlayMode extends Mode {
         if(main.mouseX < 64) {
           Cursor.selected = 1
         }
-        else if (main.mouseX > 64) {
+        else if (main.mouseX > 64 && main.mouseX < 128) {
           Cursor.selected = 2
+        }
+        else if (main.mouseX > 128 && main.mouseX < 192) {
+          Cursor.selected = 3
+        }
+        else if (main.mouseX > 512 && main.mouseX < 576) {
+          Spawner.ready = true
         }
       }
     }
-    else {      //right mouse clears selection
+    else {      //right mouse click clears selection
       Cursor.selected = 0
     }
   }
@@ -66,8 +77,10 @@ object PlayMode extends Mode {
   def draw(dt: Double) = {
     main.background(100)
     GameMap.draw
+    abilities.foreach(_.draw)
     enemies.foreach(_.draw(1))
     towers.foreach(_.draw(1))
+    //Draw the range of towers if hovered
     if(Cursor.isOnTower || Cursor.selected != 0) {
       towers.foreach(_.drawRange)
     }
@@ -112,7 +125,6 @@ object PlayMode extends Mode {
     
     for(e <- enemies) {
       e.checkForTarget
-      //e.checkForWall
       e.move(e.moveVector)
       e.checkForEnemies
       if(!e.isAlive) {
@@ -131,6 +143,19 @@ object PlayMode extends Mode {
         t.shoot
       }
     }
+    
+    for(a <- abilities) {
+      a.update
+      if(a.isExpired) {
+        abilities.filter(_ != a)
+      }
+      for (e <- enemies) {  //Check if enemy is above
+        if(a.touches(e)) {
+          a.effect(e)
+        }
+      }
+    }
+    
     
     /* Check for expired texts */
     for(i <- texts) {

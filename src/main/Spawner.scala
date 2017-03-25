@@ -16,7 +16,7 @@ object Spawner {
     case 2 => Array(new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy)
     case 3 => Array(new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,
                     new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy)
-    case 4 => Array(new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,
+    case 4 => Array(new FastEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,
                     new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,
                     new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy)
     case _ => Array(new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,new BasicEnemy,

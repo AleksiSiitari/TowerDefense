@@ -7,7 +7,8 @@ object Sprites {
   private val names = Map[String, String] (
       "grass" -> "grass.png",
       "wall" -> "wall.png",
-      "enemy" -> "enemy.png",
+      "ufoRed" -> "ufoRed.png",
+      "ufoRed2" -> "ufoRed2.png",
       "tower" -> "tower.png",
       "LongTower" -> "longTower.png",
       "grass2" -> "grass2.png",
@@ -19,7 +20,10 @@ object Sprites {
       "towerButton" -> "towerButton.png",
       "towerButtonSelected" -> "towerButtonSelected.png",
       "longTowerButton" -> "longTowerButton.png",
-      "longTowerButtonSelected" -> "longTowerButtonSelected.png"
+      "longTowerButtonSelected" -> "longTowerButtonSelected.png",
+      "playButton" -> "play.png",
+      "ufoBlue" -> "ufoBlue.png",
+      "fire" -> "fire.png"
   )
   
   private val imagePath = "resources/images/"

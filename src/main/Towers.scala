@@ -2,12 +2,15 @@ package main
 
 import processing.core._
 
-abstract class Towers(val position: Vector) {
-  //var position: Vector = Vector(0,0)
+abstract class Buildable(var position: Vector) {
+  var cost: Int
+  var range: Int
+}
+
+abstract class Towers(position: Vector) extends Buildable(position: Vector) {
   var loadedImage : Option[PImage] = None
   var target: Option[Enemy] = None
   var moveVector = Vector(0,0)
-  var range: Double
   var image_id = "tower"
   var cd = 0
   

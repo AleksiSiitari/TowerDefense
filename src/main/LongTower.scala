@@ -2,7 +2,7 @@ package main
 
 class LongTower(position: Vector) extends Towers(position: Vector) {
   
-  var range = 500.0
+  var range = 500
   var cost = 200
   cd = 0
   image_id = "LongTower"

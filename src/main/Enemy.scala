@@ -16,8 +16,8 @@ abstract class Enemy {
   var curTarget = 0
   var target = Path1.points(curTarget)
   var rand = new Random
-  val image_id = "enemy"
-
+  var image_id = "ufoRed"
+  
   def angle : Double = 0.0
   
   def isAlive:Boolean = HP > 0
@@ -48,7 +48,7 @@ abstract class Enemy {
   
   def checkForEnemies = {
     for(e <- PlayMode.enemies) {
-      if((this.position).distanceToPoint(e.position) < 15) {
+      if((this.position).distanceToPoint(e.position) < 20) {
         this.position = this.position - (e.position - this.position).normalized()*3
       }
     }

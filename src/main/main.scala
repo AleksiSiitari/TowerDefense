@@ -4,7 +4,13 @@ import processing.core._
 import scala.math._
 import java.awt.event.KeyEvent._
 import scala.util._
-
+/*
+ * TODO:
+ * Parempi wave systemi
+ * Lisää torni ja vihollistyyppejä (esim hidastavat ammukset)
+ * Pelaajan "abilityt"
+ * 
+ */
 object main extends PApplet {
   
   var f = createFont("Arial", 16, true);
