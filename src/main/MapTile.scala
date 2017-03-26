@@ -66,12 +66,20 @@ object GameMap {
 
   
   // Draws the blocks in the map
-  def draw() = {
+  def drawGround() = {
     for(x <- 0 until width; y <- 0 until height) {
       // Draw each block individually
+      if(!blocks(x)(y).solid)
       blocks(x)(y).draw
     }
-
+  }
+  
+  def drawWalls() = {
+    for(x <- 0 until width; y <- 0 until height) {
+      if(blocks(x)(y).solid) {
+        blocks(x)(y).draw
+      }
+    }
   }
   
   // Gets the tile at coordinate x, y

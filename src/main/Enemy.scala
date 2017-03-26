@@ -20,6 +20,8 @@ abstract class Enemy {
   
   def angle : Double = 0.0
   
+  def beingHit(DMG: Int)
+  
   def isAlive:Boolean = HP > 0
   
   def draw(scale: Int)

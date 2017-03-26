@@ -13,7 +13,7 @@ abstract class Ability(position: Vector) extends Buildable(position: Vector) {
     enemy.position.distanceToPoint(this.position) < range
   }
   
-  def isExpired = duration <= 0
+  def isExpired = duration < 0
   
   def image() = {
 	  if(!loadedImage.isDefined) {
@@ -22,14 +22,13 @@ abstract class Ability(position: Vector) extends Buildable(position: Vector) {
 	  loadedImage.get
 	}
   
-  def update
+  def update = this.duration -= 1
   
   def effect(enemy: Enemy)
   
    def draw = {
 	  main.pushMatrix()
-	  main.translate(this.position.x, this.position.y)
-	  main.image(image, -image.width/2, -image.height/2, image.width, image.height)
+	  main.image(image, this.position.x - main.offset.x, this.position.y - main.offset.y)
 	  main.popMatrix()
 	}
 }
@@ -37,14 +36,10 @@ abstract class Ability(position: Vector) extends Buildable(position: Vector) {
 
 class Fire(location: Vector) extends Ability(location: Vector) {
   
-  var duration = 60*10
+  var duration = 10*60
   var range = 70
   var image_id = "fire"
   var cost = 100
-  
-  def update = {
-    duration -= 1
-  }
   
   def effect(enemy: Enemy) = {
     enemy.HP -= 1

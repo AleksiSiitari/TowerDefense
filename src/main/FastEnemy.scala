@@ -5,6 +5,7 @@ class FastEnemy extends Enemy{
   maxHP = 50
   HP = 50
   speed = 2.0
+  reward = 15
  
   //Chooses a random spawn positon from all possible
   var rand2 = new Random(System.currentTimeMillis())
@@ -15,6 +16,10 @@ class FastEnemy extends Enemy{
   
   position = result*32
   
+  def beingHit(DMG: Int) = {
+    this.HP -= DMG
+    this.speed -= 0.2
+  }
   
   def draw(scale: Int) = {
 	  main.pushMatrix()

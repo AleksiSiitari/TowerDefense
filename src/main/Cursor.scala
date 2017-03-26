@@ -79,11 +79,14 @@ object Cursor {
         main.popMatrix()
       }
       else {
+        /*
         main.pushMatrix()
         main.fill(255, 0, 0, 100)
         main.rect(GameMap.getTile(main.mouseLocation()).x*32, GameMap.getTile(main.mouseLocation()).y*32 ,32 ,32)
         main.ellipse(GameMap.getTile(main.mouseLocation).x*32+main.offset.x, GameMap.getTile(main.mouseLocation).y*32+main.offset.y, towerNum(selected).range.toFloat, towerNum(selected).range.toFloat)
         main.popMatrix()
+        * 
+        */
       }
     }
   }

@@ -23,7 +23,8 @@ object Sprites {
       "longTowerButtonSelected" -> "longTowerButtonSelected.png",
       "playButton" -> "play.png",
       "ufoBlue" -> "ufoBlue.png",
-      "fire" -> "fire.png"
+      "fire" -> "fire.png",
+      "fireSelected" -> "fire2.png"
   )
   
   private val imagePath = "resources/images/"

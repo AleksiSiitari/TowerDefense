@@ -2,7 +2,7 @@ package main
 
 import processing.core._
 
-class Ammo(start: Vector, target: Vector, spawnTime: Long) {
+class Ammo(start: Vector, target: Vector, spawnTime: Long, DMG: Int) {
   var position: Vector = start
   var loadedImage : Option[PImage] = None
   var speed: Int = 4

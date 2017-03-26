@@ -19,7 +19,7 @@ object PlayMode extends Mode {
   var btns = Buffer[InGameButton](new InGameButton(0, 606, 64, 64, 1, "towerButton", "towerButtonSelected"),
                                   new InGameButton(64,606, 64, 64, 2, "longTowerButton", "longTowerButtonSelected"),
                                   new InGameButton(512, 606, 64, 64, 10, "playButton", "playButton"),
-                                  new InGameButton(128, 606, 64, 64, 3, "fire", "fire")
+                                  new InGameButton(128, 606, 64, 64, 3, "fire", "fireSelected")
                                   )
                                   
   var tooltips = Map[InGameButton, Tooltips](btns(0) -> new Tooltips(Vector(0,574), "A Basic Tower \n $50", 2),
@@ -76,8 +76,9 @@ object PlayMode extends Mode {
   
   def draw(dt: Double) = {
     main.background(100)
-    GameMap.draw
+    GameMap.drawGround
     abilities.foreach(_.draw)
+    GameMap.drawWalls
     enemies.foreach(_.draw(1))
     towers.foreach(_.draw(1))
     //Draw the range of towers if hovered
@@ -103,6 +104,7 @@ object PlayMode extends Mode {
     Cursor.isOnTower
     Spawner.spawnWave
     btns.foreach(_.update())
+    abilities.foreach(_.update)
     
     if(!Player.isAlive) {
       PlayMode.terminate()
@@ -116,8 +118,7 @@ object PlayMode extends Mode {
       }
       for (e <- enemies) {  //Check for collisions
         if(p.collides(e)) {
-          e.HP -= p.damage
-          e.speed -= 0.1
+          e.beingHit(p.damage)
           projectiles = projectiles.filter(x => x != p)
         }
       }
@@ -145,11 +146,10 @@ object PlayMode extends Mode {
     }
     
     for(a <- abilities) {
-      a.update
       if(a.isExpired) {
-        abilities.filter(_ != a)
+        abilities -= a              //FIXME: Crashes the game if more than one ability active
       }
-      for (e <- enemies) {  //Check if enemy is above
+      for (e <- enemies) {  //Check for enemy
         if(a.touches(e)) {
           a.effect(e)
         }
@@ -159,7 +159,7 @@ object PlayMode extends Mode {
     
     /* Check for expired texts */
     for(i <- texts) {
-      if(i.isExpired) {                //FIXME: Does not remove expired texts
+      if(i.isExpired) {                //FIXME: Does not remove expired texts properly
         texts.filter(_ != i)
       }
     }
