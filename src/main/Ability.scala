@@ -46,3 +46,17 @@ class Fire(location: Vector) extends Ability(location: Vector) {
   }
   
 }
+
+
+class Ice(location: Vector) extends Ability(location: Vector) {
+  
+  var duration = 15*60
+  var range = 70
+  var image_id = "ice"
+  var cost = 50
+  
+  def effect(enemy: Enemy) = {
+    enemy.speed -= 0.001          //TODO: Implement better!  
+  }
+  
+}

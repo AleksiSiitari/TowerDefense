@@ -8,7 +8,7 @@ import scala.util.Random
 
 abstract class Enemy {
   var maxHP: Int = 100
-  var HP: Int = 100
+  var HP: Int = maxHP
   var reward: Int = 10
   var speed: Double = 1.0
   var position: Vector = Vector(0,0)
@@ -17,10 +17,23 @@ abstract class Enemy {
   var target = Path1.points(curTarget)
   var rand = new Random
   var image_id = "ufoRed"
+  var cycle = 0
   
   def angle : Double = 0.0
   
-  def beingHit(DMG: Int)
+  def beingHit(DMG: Int) = {
+    this.HP -= DMG
+    this.speed -= 0.1
+    if (this.cycle <= 0) {
+      this.cycle = 60
+    }
+  }
+  
+  def update = {
+    if (this.cycle > 0) {
+      this.cycle -= 1
+    }
+  }
   
   def isAlive:Boolean = HP > 0
   

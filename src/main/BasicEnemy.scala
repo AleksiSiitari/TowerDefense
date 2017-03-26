@@ -13,11 +13,6 @@ class BasicEnemy extends Enemy {
   
   position = result*32
   
-  def beingHit(DMG: Int) = {
-    this.HP -= DMG
-    this.speed -= 0.1
-  }
-  
   def draw(scale: Int) = {
 	  main.pushMatrix()
 	  main.translate(this.position.x, this.position.y)

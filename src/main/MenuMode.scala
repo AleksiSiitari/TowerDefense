@@ -4,6 +4,7 @@ object MenuMode extends Mode {
   
   var settings = false
   var showInstructions = false
+  var img = Sprites.get("nebula").get
   var btns = Map[String, Button](
                   "start" -> new Button(400, 400, 250, 35, "Start"),
                   "settings" -> new Button(400, 450, 250, 35, "Settings"),
@@ -33,7 +34,9 @@ object MenuMode extends Mode {
   }
   
   def draw(dt: Double) = {
-    main.background(175,175,175)
+    main.pushMatrix()
+    main.image(img, 0, 0, 800, 670)
+    main.popMatrix()
     if (settings) {
       settingsbtns.values.foreach(_.draw())
     }

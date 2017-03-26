@@ -8,7 +8,8 @@ object Cursor {
   
   var towerNum = Map[Int, Buildable](1 -> new BasicTower(Vector(0,0)),
                                     2 -> new LongTower(Vector(0,0)),
-                                    3 -> new Fire(Vector(0,0)))
+                                    3 -> new Fire(Vector(0,0)),
+                                    4 -> new Ice(Vector(0,0)))
                                   
     
   def buildPossible = {
@@ -50,6 +51,15 @@ object Cursor {
                   Player.money -= towerNum(3).cost
                   Player.moneySpent += towerNum(3).cost
                   PlayMode.LargeTexts += new InfoText(Vector(670, 575), System.nanoTime(), "$ - " + towerNum(3).cost, 255,150,0,40)
+                  }
+                  else {
+                    PlayMode.texts += new InfoText(main.mouseLocation(), System.nanoTime(), "Not Enough money!", 255,0,0,14)
+                  }
+        case 4 =>if (Player.money - towerNum(4).cost >= 0) {
+                  PlayMode.abilities += new Ice(GameMap.getTile(main.mouseLocation()).location)
+                  Player.money -= towerNum(4).cost
+                  Player.moneySpent += towerNum(4).cost
+                  PlayMode.LargeTexts += new InfoText(Vector(670, 575), System.nanoTime(), "$ - " + towerNum(4).cost, 255,150,0,40)
                   }
                   else {
                     PlayMode.texts += new InfoText(main.mouseLocation(), System.nanoTime(), "Not Enough money!", 255,0,0,14)

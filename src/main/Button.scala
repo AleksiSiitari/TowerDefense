@@ -60,11 +60,10 @@ class Button(var x: Int, var y: Int, var w: Int, var h: Int, var text: String) {
 }
 
 
-class InGameButton(var x: Int, var y: Int, var w: Int, var h: Int, var number: Int, var image: String, var image2: String ) {
+class InGameButton(var x: Int, var y: Int, var w: Int, var h: Int, var number: Int, var image: String) {
   var selected = false
   var hover = false
   val normalImage = Sprites.get(image)
-  val selectedImage = Sprites.get(image2)
   var onFor = 0
   
   
@@ -85,8 +84,12 @@ class InGameButton(var x: Int, var y: Int, var w: Int, var h: Int, var number: I
     main.pushStyle()
     main.pushMatrix()
             
-    if(selected) {
-      main.image(selectedImage, x, y)
+    if(selected || isHovering) {
+      main.pushMatrix()
+      main.fill(0,255,0,75)
+      main.image(normalImage, x, y)
+      main.rect(x,y,64,64)
+      main.popMatrix()
     }
     else {
       main.image(normalImage, x, y)

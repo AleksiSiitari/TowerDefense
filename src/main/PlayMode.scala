@@ -16,16 +16,18 @@ object PlayMode extends Mode {
   var LargeTexts = Buffer[InfoText]()
   var time = 0
   
-  var btns = Buffer[InGameButton](new InGameButton(0, 606, 64, 64, 1, "towerButton", "towerButtonSelected"),
-                                  new InGameButton(64,606, 64, 64, 2, "longTowerButton", "longTowerButtonSelected"),
-                                  new InGameButton(512, 606, 64, 64, 10, "playButton", "playButton"),
-                                  new InGameButton(128, 606, 64, 64, 3, "fire", "fireSelected")
+  var btns = Buffer[InGameButton](new InGameButton(0, 606, 64, 64, 1, "towerButton"),
+                                  new InGameButton(64,606, 64, 64, 2, "longTowerButton"),
+                                  new InGameButton(512, 606, 64, 64, 10, "playButton"),
+                                  new InGameButton(128, 606, 64, 64, 3, "fire"),
+                                  new InGameButton(192, 606, 64, 64,4, "ice")
                                   )
                                   
   var tooltips = Map[InGameButton, Tooltips](btns(0) -> new Tooltips(Vector(0,574), "A Basic Tower \n $50", 2),
                                              btns(1) -> new Tooltips(Vector(64, 574), "A long range tower \n $200", 2),
                                              btns(2) -> new Tooltips(Vector(512, 574), "Press to start the\n next wave", 2),
-                                             btns(3) -> new Tooltips(Vector(128, 574), "Set fire \n $100", 2)
+                                             btns(3) -> new Tooltips(Vector(128, 574), "Set a temporary fire \n to damage enemies \n $100", 3),
+                                             btns(4) -> new Tooltips(Vector(192, 574), "Create temporary ice \n to slow enemies \n $50", 3)
                                              )
 
   
@@ -59,6 +61,9 @@ object PlayMode extends Mode {
         }
         else if (main.mouseX > 128 && main.mouseX < 192) {
           Cursor.selected = 3
+        }
+        else if (main.mouseX > 192 && main.mouseX < 256) {
+          Cursor.selected = 4
         }
         else if (main.mouseX > 512 && main.mouseX < 576) {
           Spawner.ready = true
@@ -125,6 +130,7 @@ object PlayMode extends Mode {
     }
     
     for(e <- enemies) {
+      e.update
       e.checkForTarget
       e.move(e.moveVector)
       e.checkForEnemies
