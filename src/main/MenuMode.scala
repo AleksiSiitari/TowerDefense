@@ -6,10 +6,10 @@ object MenuMode extends Mode {
   var showInstructions = false
   var img = Sprites.get("nebula").get
   var btns = Map[String, Button](
-                  "start" -> new Button(400, 400, 250, 35, "Start"),
-                  "settings" -> new Button(400, 450, 250, 35, "Settings"),
-                  "instructions" -> new Button(400, 500, 250, 35, "Instructions"),
-                  "exit" -> new Button(400, 550, 250, 35, "Exit"))
+                  "start" -> new Button(400, 300, 250, 35, "Start"),
+                  "settings" -> new Button(400, 400, 250, 35, "Settings"),
+                  "instructions" -> new Button(400, 450, 250, 35, "Instructions"),
+                  "exit" -> new Button(400, 500, 250, 35, "Exit"))
                   
   var settingsbtns = Map[String, Button](
                            "sound" -> new Button(400,400,250,35, "Sound"),

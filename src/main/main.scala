@@ -5,10 +5,11 @@ import scala.math._
 import java.awt.event.KeyEvent._
 import scala.util._
 /*
- * TODO:
+ * TODO: 
  * Parempi wave systemi
- * Lisää torni ja vihollistyyppejä (esim hidastavat ammukset)
- * Pelaajan "abilityt"
+ * Lisää torni ja vihollistyyppejä
+ * 
+ * 
  * 
  */
 object main extends PApplet {

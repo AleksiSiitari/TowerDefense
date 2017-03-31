@@ -138,6 +138,7 @@ object PlayMode extends Mode {
         enemies = enemies.filter(x => x != e)
         Player.money += e.reward
         Player.enemiesSlain += 1
+        LargeTexts += new InfoText(Vector(670, 575), System.nanoTime(), "$ + " + e.reward, 255,150,0,40)
       }
     }
 
@@ -153,7 +154,7 @@ object PlayMode extends Mode {
     
     for(a <- abilities) {
       if(a.isExpired) {
-        abilities -= a              //FIXME: Crashes the game if more than one ability active
+        abilities = abilities.filter(x => x != a)              //FIXME: Crashes the game if more than one ability active
       }
       for (e <- enemies) {  //Check for enemy
         if(a.touches(e)) {
