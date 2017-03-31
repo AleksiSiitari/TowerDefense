@@ -8,6 +8,9 @@ import scala.util._
 
 object PlayMode extends Mode {
   
+  var font = main.createFont("Arial", 16, true)
+  var bigFont = main.createFont("Arial", 24, true)
+  
   var enemies = Buffer[Enemy]()
   var towers = Buffer[Towers]()
   var projectiles = Buffer[Ammo]()
@@ -32,7 +35,8 @@ object PlayMode extends Mode {
 
   
   def init () = {
-    Spawner.ready = false
+    Spawner.init()
+//    Spawner.ready = false
     enemies.clear()
     towers.clear()
     projectiles.clear()
@@ -66,7 +70,10 @@ object PlayMode extends Mode {
           Cursor.selected = 4
         }
         else if (main.mouseX > 512 && main.mouseX < 576) {
-          Spawner.ready = true
+//          Spawner.ready = true
+          if(!Spawner.waveOn) {
+            Spawner.timeUntilNextWave = 0
+          }
         }
       }
     }
@@ -76,7 +83,7 @@ object PlayMode extends Mode {
   }
   
   def keyPressed = {
-    Spawner.ready = true
+//    Spawner.ready = true
   }
   
   def draw(dt: Double) = {
@@ -92,7 +99,6 @@ object PlayMode extends Mode {
     }
     projectiles.foreach(_.draw(1))
     GUI.draw
-    Spawner.draw
     Cursor.draw
     btns.foreach(_.draw())
     texts.foreach(_.draw)
@@ -103,11 +109,26 @@ object PlayMode extends Mode {
         tooltips(x).draw
     }}
     
+    main.pushStyle()
+    main.textAlign(3, 3)
+    main.textFont(font)
+    main.text(s"${Spawner.getWaveString}", main.width/2, main.height-18)
+    main.text(s"Score: ${Player.score}", main.width-75, main.height-18)
+    main.popStyle()
+    
+    if(Spawner.shouldDisplayWaveWin()) {
+      main.pushStyle()
+      main.textAlign(3, 3)
+      main.textFont(bigFont)
+      main.text(Spawner.waveWinString(), main.width/2, main.height/2)
+      main.popStyle()
+    }
+    
   }
   
   def update(dt: Double) = {
     Cursor.isOnTower
-    Spawner.spawnWave
+    Spawner.updateWaveStatus()
     btns.foreach(_.update())
     abilities.foreach(_.update)
     
