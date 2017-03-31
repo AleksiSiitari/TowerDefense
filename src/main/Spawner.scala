@@ -8,7 +8,7 @@ class Wave(var enemies: Map[String, Int], var winPoints: Int, var spawnDelay: Do
 
 object Wave {
   def apply(w: Wave) = {
-    // Do a deep copy of the map so we don't accidentally reset the zombie counts
+    // Do a deep copy of the map so we dont reset the enemy count
     var counts = Map[String, Int]()
     counts ++= w.enemies
     new Wave(counts, w.winPoints, w.spawnDelay)
@@ -117,7 +117,7 @@ object Spawner {
     waveOn = false
   }
       
-  var timeUntilNextWave = {      //FIXME: maybe a function???
+  def timeUntilNextWave = {      //TODO: implement a way to skip the waiting
     if(waveOn) {
       0
     } else {
@@ -137,8 +137,7 @@ object Spawner {
   }
   
   def getEnemiesLeft() = {
-    // The number of zombies are left is equal to the sum of the zombie spawner counts
-    // and the number of zombies currently alive
+    //count the number of enemies left
     currentConfig.enemies.values.sum + PlayMode.enemies.size
   }
   
@@ -179,7 +178,7 @@ object Spawner {
       }
       
       if(getEnemiesLeft == 0) {
-        // The player beat all the zombies
+        // The player beat all the enemies
         
         waveOn = false
         waveEnded = System.nanoTime()

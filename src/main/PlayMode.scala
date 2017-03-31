@@ -72,7 +72,7 @@ object PlayMode extends Mode {
         else if (main.mouseX > 512 && main.mouseX < 576) {
 //          Spawner.ready = true
           if(!Spawner.waveOn) {
-            Spawner.timeUntilNextWave = 0
+//            Spawner.timeUntilNextWave = 0
           }
         }
       }
