@@ -10,7 +10,8 @@ object PlayMode extends Mode {
   
   var font = main.createFont("Arial", 16, true)
   var bigFont = main.createFont("Arial", 24, true)
-    var img = Sprites.get("nebula").get
+  var img = Sprites.get("nebula").get      //Image for the background
+ 
   var enemies = Buffer[Enemy]()
   var towers = Buffer[Towers]()
   var projectiles = Buffer[Ammo]()
@@ -111,20 +112,25 @@ object PlayMode extends Mode {
       if(x.timeForTooltip) {
         tooltips(x).draw
     }}
-    
+    main.pushMatrix()
     main.pushStyle()
     main.textAlign(3, 3)
-    main.textFont(font)
-    main.text(s"${Spawner.getWaveString}", main.width/2, main.height-18)
-    main.text(s"Score: ${Player.score}", main.width-75, main.height-18)
+    main.fill(255, 150, 0)
+    main.textFont(bigFont)
+    main.text(s"${Spawner.getWaveString}", main.width/2, 10)
+    main.text(s"Score: ${Player.score}", main.width-75, 10)
     main.popStyle()
+    main.popMatrix()
     
     if(Spawner.shouldDisplayWaveWin()) {
+      main.pushMatrix()
       main.pushStyle()
       main.textAlign(3, 3)
+      main.fill(255, 150, 0)
       main.textFont(bigFont)
       main.text(Spawner.waveWinString(), main.width/2, main.height/2)
       main.popStyle()
+      main.popMatrix()
     }
     
   }

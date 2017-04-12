@@ -6,19 +6,21 @@ import java.awt.event.KeyEvent._
 import scala.util._
 /*
  * TODO: 
- * Parempi wave systemi
+ * 
  * Lisää torni ja vihollistyyppejä
- * 
- * 
+ * tiedostosta luku
+ * lisää tasoja
+ * tekstien yhtenästäminen jne.
  * 
  */
 object main extends PApplet {
   
-  var f = createFont("Arial", 16, true);
+  var f = createFont("Arial", 16, true)
+  var fontColor = (204, 153, 0)
   var mode: Mode = MenuMode
 	var last_update = System.nanoTime()
 	var last_draw = System.nanoTime()
-	var offset = Vector(16,16)       //For compensating the offset in calculations from drawing images centered
+	var offset = Vector(16,16)       //For compensating the offset in calculations
 	var fastMode = false
  	
 	def mouseLocation() = {

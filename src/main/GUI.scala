@@ -25,7 +25,7 @@ object GUI {
   def draw = {
     main.textAlign(3, 3)
     main.textFont(f,40)
-    main.fill(204, 153, 0)
+    main.fill(255, 140, 0)
     main.text("$ " + Player.money, 670, 635)
 //	  main.image(rectImage, 0,605)
 //	  main.image(rectImage, 64, 605)

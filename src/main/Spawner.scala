@@ -42,6 +42,17 @@ object Spawner {
         50,
         2.00
       
+      ),
+      4 -> new Wave(
+        Map("normal" -> 10),
+        50,
+        2.00
+      ),
+      5 -> new Wave(
+        Map("normal" -> 15,
+            "fast" -> 3   ),
+        75,
+        2.00  
       )
   )
     
@@ -96,8 +107,7 @@ object Spawner {
   
   def updateWaveStatus() = {
     if(!waveOn) {
-      if(timeUntilNextWave <= 0) {
-        // Time between rounds ran out, start a new wave
+      if(timeUntilNextWave <= 0) {  // Time between rounds ran out, start a new wave
         waveNum += 1
         waveOn = true
         setWaveConfiguration()
@@ -105,7 +115,7 @@ object Spawner {
     } else {
       (nextWaveStart - System.nanoTime())/1e9
       if((System.nanoTime() - lastSpawn)/1e9 > currentConfig.spawnDelay /** Settings.spawnMultiplier*/){   //TODO: Implement difficulty settings here!
-        // Been over spawnDelay seconds since last spawn, generate a new enemy
+        // if been over spawnDelay seconds since last spawn, generate a new enemy
         
         var possible = currentConfig.enemies.filter(_._2 > 0).keys.toArray
         if(possible.size > 0) {
