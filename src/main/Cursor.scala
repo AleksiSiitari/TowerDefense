@@ -83,14 +83,14 @@ object Cursor {
     
   }
   
-  def isOnTower = {
+  def isOnTower = {  //True if mouse is hovering over a tower
     PlayMode.towers.exists( x => (x.position + main.offset).distanceToPoint(main.mouseLocation()) < 10  )
   }
   
    
   
   def draw = {
-    if (selected != 0 && main.mouseLocation().y < 606) {
+    if (selected != 0 && main.mouseLocation().y < 606) {  //Draws the preview of the building
       main.ellipseMode(2)
       if (buildPossible) {
         main.pushMatrix()
@@ -99,7 +99,7 @@ object Cursor {
         main.ellipse(GameMap.getTile(main.mouseLocation).x*32+main.offset.x, GameMap.getTile(main.mouseLocation).y*32+main.offset.x,towerNum(selected).range.toFloat, towerNum(selected).range.toFloat)
         main.popMatrix()
       }
-      else {
+      else { //Draws in red if cannot build
         /*
         main.pushMatrix()
         main.fill(255, 0, 0, 100)

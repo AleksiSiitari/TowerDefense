@@ -7,10 +7,14 @@ import scala.util._
 /*
  * TODO: 
  * 
- * Lisää torni ja vihollistyyppejä	(vihollinen jolla suojakilpi aluksi?)
- * tiedostosta luku
- * lisää tasoja
- * tekstien yhtenästäminen jne.
+ * -Lisää torni ja vihollistyyppejä	(vihollinen jolla suojakilpi aluksi ?)
+ * -tiedostosta luku esim .txt
+ * -lisää tasoja
+ * -tekstien yhtenästäminen jne.
+ * -animaatiot
+ * -siirrä tornien kuvia pari pikseliä ylöspäin
+ * -Kaikkien tornien kantaman piirtäminen syö liikaa tehoja, muuta piirtämään yksi kerrallaan
+ * 
  * 
  */
 object main extends PApplet {

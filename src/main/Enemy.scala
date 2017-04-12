@@ -17,21 +17,21 @@ abstract class Enemy {
   var target = Path1.points(curTarget)
   var rand = new Random
   var image_id = "ufoRed"
-  var cycle = 0
+  var frame = 0
   
   def angle : Double = 0.0
   
   def beingHit(DMG: Int) = {
     this.HP -= DMG
     this.speed -= 0.1
-    if (this.cycle <= 0) {
-      this.cycle = 60
+    if (this.frame <= 0) {
+      this.frame = 10
     }
   }
   
   def update = {
-    if (this.cycle > 0) {
-      this.cycle -= 1
+    if (this.frame > 0) {
+      this.frame -= 1
     }
   }
   

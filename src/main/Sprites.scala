@@ -5,22 +5,17 @@ import processing.core._
 
 object Sprites {
   private val names = Map[String, String] (
-      "grass" -> "grass.png",
       "wall" -> "wall.png",
       "ufoRed" -> "ufoRed.png",
       "ufoRed2" -> "ufoRed2.png",
       "tower" -> "tower.png",
       "LongTower" -> "longTower.png",
-      "grass2" -> "glass.png",
-      "wall2" -> "wall.png",
-      "finish" -> "finish.png",
-      "UIrectangle" -> "UIrectangle.png",
+      "glass" -> "glass.png", 
+      "wall2" -> "wall2.png",
       "ammo" -> "ammo.png",
       "buttonBlur" -> "button_blur.png",
       "towerButton" -> "towerButton.png",
-      "towerButtonSelected" -> "towerButtonSelected.png",
       "longTowerButton" -> "longTowerButton.png",
-      "longTowerButtonSelected" -> "longTowerButtonSelected.png",
       "playButton" -> "play.png",
       "ufoBlue" -> "ufoBlue.png",
       "fire" -> "fire.png",
@@ -28,7 +23,9 @@ object Sprites {
       "nebula" -> "nebula.jpg",
       "star" -> "star.png",
       "sprayTower" -> "sprayTower.png",
-      "sprayTowerButton" -> "sprayTowerButton.png"
+      "sprayTowerButton" -> "sprayTowerButton.png",
+      "ufoRedDamaged" -> "ufoRedDamaged.png",
+      "energyShield" -> "energyShield.png"
   )
   
   private val imagePath = "resources/images/"

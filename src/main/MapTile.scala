@@ -111,20 +111,17 @@ object GameMap {
  
   def generateMap() = {
     for(x <- 0 until width; y <- 0 until height) {
-      var id = "grass2"
+      var id = "glass"
       var solid = false
     
       if(mapTiles(y)(x) == '*') {
-        id = "wall2"
+        id = "wall"
         solid = true
       }
       else if (mapTiles(y)(x) == 'S') {
         spawnerLocations += Vector(x,y)
       }
-       else if (mapTiles(y)(x) == 'E') {
-         id = "finish"
-         endLocation += Vector(x,y)
-      }
+
 
       
     

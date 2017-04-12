@@ -38,7 +38,7 @@ object Spawner {
         2.00
       ),
       3 -> new Wave(
-        Map("normal" -> 5),
+        Map("normal" -> 7),
         50,
         2.00
       
@@ -52,11 +52,12 @@ object Spawner {
         Map("normal" -> 15,
             "fast" -> 3   ),
         75,
-        2.00  
+        1.50  
       ),
       6 -> new Wave(
         Map("normal" -> 20,
-            "fast" -> 5   ),
+            "fast" -> 5,
+            "tough" -> 2),
         75,
         1.50  
       )
@@ -145,8 +146,11 @@ object Spawner {
   def generateEnemy(name: String): Enemy = {
     if(name == "normal") {
       new BasicEnemy()
-    } else {
+    } else if (name == "fast") {
       new FastEnemy()
+    }
+    else {
+      new ToughEnemy()
     }
   }
   
