@@ -1,6 +1,6 @@
 package main
 
-import processing.core._
+import processing.core._ 
 import scala.collection.mutable.Buffer
 import scala.math._
 import java.awt.event.KeyEvent._
@@ -10,7 +10,7 @@ object PlayMode extends Mode {
   
   var font = main.createFont("Arial", 16, true)
   var bigFont = main.createFont("Arial", 24, true)
-  
+    var img = Sprites.get("nebula").get
   var enemies = Buffer[Enemy]()
   var towers = Buffer[Towers]()
   var projectiles = Buffer[Ammo]()
@@ -87,7 +87,10 @@ object PlayMode extends Mode {
   }
   
   def draw(dt: Double) = {
-    main.background(100)
+    
+    main.image(img, 0, 0, 800, 670)
+    AnimatedBackground.draw
+    
     GameMap.drawGround
     abilities.foreach(_.draw)
     GameMap.drawWalls
@@ -127,6 +130,8 @@ object PlayMode extends Mode {
   }
   
   def update(dt: Double) = {
+    AnimatedBackground.update
+    
     Cursor.isOnTower
     Spawner.updateWaveStatus()
     btns.foreach(_.update())

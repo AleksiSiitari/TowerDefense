@@ -11,8 +11,8 @@ object Sprites {
       "ufoRed2" -> "ufoRed2.png",
       "tower" -> "tower.png",
       "LongTower" -> "longTower.png",
-      "grass2" -> "grass2.png",
-      "wall2" -> "wall2.png",
+      "grass2" -> "glass.png",
+      "wall2" -> "wall.png",
       "finish" -> "finish.png",
       "UIrectangle" -> "UIrectangle.png",
       "ammo" -> "ammo.png",
@@ -25,7 +25,8 @@ object Sprites {
       "ufoBlue" -> "ufoBlue.png",
       "fire" -> "fire.png",
       "ice" -> "ice.png",
-      "nebula" -> "nebula.jpg"
+      "nebula" -> "nebula.jpg",
+      "star" -> "star.png"
   )
   
   private val imagePath = "resources/images/"
