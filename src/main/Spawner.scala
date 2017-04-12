@@ -53,6 +53,12 @@ object Spawner {
             "fast" -> 3   ),
         75,
         2.00  
+      ),
+      6 -> new Wave(
+        Map("normal" -> 20,
+            "fast" -> 5   ),
+        75,
+        1.50  
       )
   )
     

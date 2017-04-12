@@ -7,7 +7,7 @@ import scala.util._
 /*
  * TODO: 
  * 
- * Lisää torni ja vihollistyyppejä
+ * Lisää torni ja vihollistyyppejä	(vihollinen jolla suojakilpi aluksi?)
  * tiedostosta luku
  * lisää tasoja
  * tekstien yhtenästäminen jne.
