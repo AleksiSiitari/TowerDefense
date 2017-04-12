@@ -26,7 +26,9 @@ object Sprites {
       "fire" -> "fire.png",
       "ice" -> "ice.png",
       "nebula" -> "nebula.jpg",
-      "star" -> "star.png"
+      "star" -> "star.png",
+      "sprayTower" -> "sprayTower.png",
+      "sprayTowerButton" -> "sprayTowerButton.png"
   )
   
   private val imagePath = "resources/images/"

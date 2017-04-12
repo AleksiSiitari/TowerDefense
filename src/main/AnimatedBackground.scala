@@ -7,8 +7,8 @@ object AnimatedBackground {
   
   var rand = new Random()
   
-  var stars = Array[Star]( new Star(Vector(-1,-1), Vector(-2,-2)), new Star(Vector(-1,-1), Vector(-2,-2)),
-                           new Star(Vector(-1, -1), Vector(-2,-2)))
+  var stars = Array[Star]( new Star(Vector(-1,-1), Vector(-2,-2), 4), new Star(Vector(-1,-1), Vector(-2,-2),5),
+                           new Star(Vector(-1, -1), Vector(-2,-2), 6),  new Star(Vector(-1, -1), Vector(-2,-2), 8))
   
   def update = {
     for(s <- stars) {
@@ -16,6 +16,7 @@ object AnimatedBackground {
       if(s.position.y < 0 || s.position.x < 0) {
         s.position = Vector(800 + rand.nextInt(1000), 670 + rand.nextInt(1000))
         s.direction = Vector(-rand.nextInt(300), -rand.nextInt(300))
+        s.speed = rand.nextInt(8)+5
       }
     }
     
@@ -26,10 +27,10 @@ object AnimatedBackground {
   }
 }
 
-class Star(var position: Vector, var direction: Vector) {
+class Star(var position: Vector, var direction: Vector, var speed: Int) {
   
   def move() = {
-    this.position += (direction - position).normalized()*7
+    this.position += (direction - position).normalized()*speed
   }
   
   def draw() = {
