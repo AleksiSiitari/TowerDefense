@@ -8,12 +8,13 @@ import scala.util._
  * TODO: 
  * 
  * -Lisää torni ja vihollistyyppejä	(vihollinen jolla suojakilpi aluksi ?)
- * -tiedostosta luku esim .txt
+ * -tiedostosta luku esim .txt (yhdistä myös Path ja MapTile)
  * -lisää tasoja
  * -tekstien yhtenästäminen jne.
  * -animaatiot
  * -siirrä tornien kuvia pari pikseliä ylöspäin
  * -Kaikkien tornien kantaman piirtäminen syö liikaa tehoja, muuta piirtämään yksi kerrallaan
+ * -Valikot loppuun
  * 
  * 
  */

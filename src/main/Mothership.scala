@@ -1,20 +1,21 @@
 package main
+
 import scala.util._
 
-class FastEnemy extends Enemy{
-  maxHP = 50
-  HP = 50
-  speed = 2.0
-  reward = 15
-  var img2 = Sprites.get("ufoRedDamaged").get
+class Mothership extends Enemy {
+  maxHP = 1000
+  HP = 400
+  speed = 1.00
+  reward = 30
  
   //Chooses a random spawn positon from all possible
   var rand2 = new Random(System.currentTimeMillis())
   var random_index = rand2.nextInt(GameMap.spawnerLocations.length)
   var result = GameMap.spawnerLocations(random_index)
   
-  image_id = "ufoBlue"
-  
+  image_id = "mothership"
+  var img2 = Sprites.get("mothershipDamaged").get
+
   position = result*32
   
   def draw(scale: Int) = {
@@ -25,4 +26,5 @@ class FastEnemy extends Enemy{
 	    main.image(image, this.position.x, this.position.y)
 	  }
 	}
+  
 }

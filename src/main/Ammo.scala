@@ -21,7 +21,6 @@ class Ammo(start: Vector, target: Vector, spawnTime: Long, DMG: Int) {
   def remove = {???}
   
   def collides(e: Enemy) = {
-    //Math.sqrt(Math.pow(e.position.x - this.position.x , 2) + Math.pow(e.position.y - this.position.y, 2)) < 20
     this.position.distanceToPoint(e.position - main.offset) < 15
   }
     
@@ -35,9 +34,7 @@ class Ammo(start: Vector, target: Vector, spawnTime: Long, DMG: Int) {
 	}
   
   def draw(scale: Int) = {
-    main.pushMatrix()
     main.image(image, this.position.x, this.position.y)
-    main.popMatrix()
   }
   
 }

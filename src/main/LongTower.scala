@@ -2,7 +2,7 @@ package main
 
 class LongTower(position: Vector) extends Towers(position: Vector) {
   
-  var range = 500
+  var range = 300
   var cost = 200
   var damage = 40
   cd = 0

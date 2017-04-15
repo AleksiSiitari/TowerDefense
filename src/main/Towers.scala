@@ -22,9 +22,7 @@ abstract class Towers(position: Vector) extends Buildable(position: Vector) {
   }
   
   def draw(scale: Int) = {
-    main.pushMatrix()
     main.image(image, this.position.x, this.position.y)
-    main.popMatrix()
   }
   
  def drawRange = {

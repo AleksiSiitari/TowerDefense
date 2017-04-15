@@ -25,7 +25,9 @@ object Sprites {
       "sprayTower" -> "sprayTower.png",
       "sprayTowerButton" -> "sprayTowerButton.png",
       "ufoRedDamaged" -> "ufoRedDamaged.png",
-      "energyShield" -> "energyShield.png"
+      "energyShield" -> "energyShield.png",
+      "mothership" -> "mothership.png",
+      "mothershipDamaged" -> "mothershipDamaged.png"
   )
   
   private val imagePath = "resources/images/"

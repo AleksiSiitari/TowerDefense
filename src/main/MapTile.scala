@@ -1,6 +1,6 @@
 package main
-import scala.collection.mutable.Buffer
-import processing._
+import scala.collection.mutable.Buffer 
+import processing.core._
 
 
 class MapTile(image: String, var x: Int, var y: Int, var solid: Boolean) {
@@ -9,9 +9,7 @@ class MapTile(image: String, var x: Int, var y: Int, var solid: Boolean) {
   var location = Vector(x*32, y*32)
   
   def draw() = {
-    main.pushMatrix()
     main.image(img, x*32, y*32, 32, 32)
-    main.popMatrix()
   }
  
   
@@ -22,7 +20,7 @@ object GameMap {
   val height = 19
   
   val blocks = Array.ofDim[MapTile](width, height)
-  //var generatedMap : PImage = _
+  var generatedMap : PImage = _
   
   var mapTiles = Buffer(
       "*************************",
@@ -107,7 +105,9 @@ object GameMap {
     pg.endDraw()
     GameMap.generatedMap = pg
   }
+  * 
   */
+  
  
   def generateMap() = {
     for(x <- 0 until width; y <- 0 until height) {

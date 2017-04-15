@@ -1,0 +1,8 @@
+Created by Aleksi Siitari
+
+Graphical assets from opengameart.org
+
+Bonsaiheldin	- energyShield effect
+adrix89			- Ground tiles and ice/fire effects
+Kenney (www.kenney.nl)	- Enemies
+MillionthVector			- Enemies

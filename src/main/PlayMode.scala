@@ -39,7 +39,6 @@ object PlayMode extends Mode {
   
   def init () = {
     Spawner.init()
-//    Spawner.ready = false
     enemies.clear()
     towers.clear()
     projectiles.clear()
@@ -76,9 +75,8 @@ object PlayMode extends Mode {
           Cursor.selected = 5
         }
         else if (main.mouseX > 512 && main.mouseX < 576) {
-//          Spawner.ready = true
           if(!Spawner.waveOn) {
-//            Spawner.timeUntilNextWave = 0
+            Spawner.nextWaveStart = 0.0
           }
         }
       }

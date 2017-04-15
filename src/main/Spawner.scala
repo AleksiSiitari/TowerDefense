@@ -28,7 +28,8 @@ object Spawner {
   
   var waves = Map[Int, Wave](
       1 -> new Wave(
-        Map("normal" -> 1 ),// Spawn 1 of these
+        Map("normal" -> 1,
+            "motasd" -> 1),// Spawn 1 of these
         50,                 // You get 50 score for beating the wave (modified by difficulty)
         2.00                // And one enemy spawns every 2 second (modified by difficulty)
       ),
@@ -44,22 +45,30 @@ object Spawner {
       
       ),
       4 -> new Wave(
-        Map("normal" -> 10),
+        Map("normal" -> 10,
+            "fast" -> 2),
         50,
         2.00
       ),
       5 -> new Wave(
         Map("normal" -> 15,
-            "fast" -> 3   ),
+            "fast" -> 3,
+            "tough" -> 2),
         75,
         1.50  
       ),
       6 -> new Wave(
-        Map("normal" -> 20,
-            "fast" -> 5,
-            "tough" -> 2),
+        Map("mothership" -> 1,
+            "normal" -> 10),
         75,
         1.50  
+      ),
+      7 -> new Wave(
+        Map("normal" -> 20,
+            "fast" -> 7,
+            "tough" -> 5),
+        75,
+        1.00
       )
   )
     
@@ -149,8 +158,11 @@ object Spawner {
     } else if (name == "fast") {
       new FastEnemy()
     }
-    else {
+    else if (name == "tough") {
       new ToughEnemy()
+    }
+    else {
+      new Mothership()
     }
   }
   
