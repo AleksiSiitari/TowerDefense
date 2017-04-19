@@ -1,4 +1,7 @@
-package main
+package Modes
+
+import Main._
+import Graphics._
 
 object MenuMode extends Mode {
   

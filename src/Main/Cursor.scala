@@ -1,4 +1,9 @@
-package main
+ package Main
+
+import Modes._
+import Towers._
+import Enemies._
+import Graphics._
 
 object Cursor {
   

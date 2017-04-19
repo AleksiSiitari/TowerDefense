@@ -1,6 +1,8 @@
-package main
+ package Towers
 
 import scala.util._
+import Modes.PlayMode
+import Main.Vector
 
 class SprayTower (position: Vector) extends Towers(position: Vector){
   

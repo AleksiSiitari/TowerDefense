@@ -1,4 +1,6 @@
-package main
+package Graphics
+
+import Main._
 
 class InfoText(val location: Vector,val spawnTime: Long, val text: String, val r: Int, val g: Int, val b: Int, val size: Int) {
   

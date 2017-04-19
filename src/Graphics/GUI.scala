@@ -1,5 +1,7 @@
-package main
-import processing.core._
+package Graphics
+
+import processing.core._  
+import Main._
 
 object GUI {
   var f = main.createFont("Arial", 16, true); // Arial, 16 point, anti-aliasing on

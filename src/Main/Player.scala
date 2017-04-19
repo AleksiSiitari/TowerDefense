@@ -1,4 +1,4 @@
-package main
+package Main
 
 object Player {
   var money = 100

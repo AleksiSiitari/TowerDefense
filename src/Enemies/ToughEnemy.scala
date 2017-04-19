@@ -1,5 +1,8 @@
-package main
-import scala.util._
+package Enemies
+
+import scala.util._ 
+import Graphics._
+import Main._
 
 class ToughEnemy extends Enemy{
   maxHP = 200

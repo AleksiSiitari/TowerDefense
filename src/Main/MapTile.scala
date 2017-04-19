@@ -1,6 +1,8 @@
-package main
-import scala.collection.mutable.Buffer 
+package Main
+
+import scala.collection.mutable.Buffer
 import processing.core._
+import Graphics.Sprites
 
 
 class MapTile(image: String, var x: Int, var y: Int, var solid: Boolean) {

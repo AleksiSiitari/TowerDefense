@@ -1,6 +1,9 @@
-package main
+package Towers
 
 import processing.core._
+import Graphics.Sprites
+import Enemies._
+import Main._
 
 class Ammo(start: Vector, target: Vector, spawnTime: Long, DMG: Int) {
   var position: Vector = start
@@ -21,7 +24,7 @@ class Ammo(start: Vector, target: Vector, spawnTime: Long, DMG: Int) {
   def remove = {???}
   
   def collides(e: Enemy) = {
-    this.position.distanceToPoint(e.position - main.offset) < 15
+    this.position.distanceToPoint(e.position /*- main.offset*/) < 20
   }
     
   def move = this.position += moveVector

@@ -1,11 +1,14 @@
-package main
+package Main
 
 import processing.core._
 import scala.math._
 import java.awt.event.KeyEvent._
 import scala.util._
+import Modes._
+
+
 /*
- * TODO: 
+ * TODO:   
  * 
  * -Lisää torni ja vihollistyyppejä	(vihollinen jolla suojakilpi aluksi ?)
  * -tiedostosta luku esim .txt (yhdistä myös Path ja MapTile)
@@ -15,7 +18,7 @@ import scala.util._
  * -siirrä tornien kuvia pari pikseliä ylöspäin
  * -Kaikkien tornien kantaman piirtäminen syö liikaa tehoja, muuta piirtämään yksi kerrallaan
  * -Valikot loppuun
- * 
+ * -HP indikaattori
  * 
  */
 object main extends PApplet {

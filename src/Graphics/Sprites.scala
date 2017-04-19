@@ -1,7 +1,8 @@
-package main
+ package Graphics
 
 import scala.collection.mutable.Map
 import processing.core._
+import Main._
 
 object Sprites {
   private val names = Map[String, String] (

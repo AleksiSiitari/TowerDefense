@@ -1,4 +1,7 @@
-package main
+package Modes
+
+import Graphics._
+import Main._
 
 object EndMode extends Mode {
   

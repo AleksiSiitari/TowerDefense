@@ -1,4 +1,6 @@
-package main
+package Graphics
+
+import Main._
 
 class Tooltips(var location: Vector, var text: String, var numLines: Int) {
   

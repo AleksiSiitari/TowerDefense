@@ -1,6 +1,10 @@
-package main
-import scala.util.Random
+package Enemies
 
+import scala.util.Random
+import Graphics._
+import Main._
+import Enemies._
+ 
 class BasicEnemy extends Enemy {
   maxHP = 100
   HP = 100

@@ -1,10 +1,11 @@
+ package Enemies
 
-package main
 import scala.math._
 import scala.util._
-
 import processing.core._
-import scala.util.Random
+import Main._
+import Modes._
+import Graphics._
 
 abstract class Enemy {
   var maxHP: Int = 100

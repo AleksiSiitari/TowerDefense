@@ -1,7 +1,7 @@
-package main
+package Graphics
 
-import scala.collection.mutable.Buffer
 import scala.util._
+import Main._
 
 object AnimatedBackground {
   

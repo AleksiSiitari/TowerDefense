@@ -1,4 +1,6 @@
-package main
+package Graphics
+
+import Main._
 
 class Button(var x: Int, var y: Int, var w: Int, var h: Int, var text: String) {
   var hover = false

@@ -1,4 +1,7 @@
-package main
+ package Towers
+
+import Modes.PlayMode
+import Main._
 
 class BasicTower(position: Vector) extends Towers(position: Vector){
   
@@ -10,7 +13,7 @@ class BasicTower(position: Vector) extends Towers(position: Vector){
   
   def shoot = {
     if(cd <= 0) {
-      PlayMode.projectiles += new Ammo(this.position, this.target.get.position, System.nanoTime(), this.damage)
+      PlayMode.projectiles += new Ammo(this.position, this.target.get.position + main.offset, System.nanoTime(), this.damage)
       cd = 50 
     }
     else {

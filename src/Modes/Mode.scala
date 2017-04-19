@@ -1,4 +1,4 @@
-package main
+package Modes
 
 abstract class Mode {
   

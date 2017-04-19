@@ -1,6 +1,10 @@
-package main
+package Modes
 
-import processing.core._ 
+import Main._
+import Graphics._
+import Towers._
+import Enemies._
+import processing.core._
 import scala.collection.mutable.Buffer
 import scala.math._
 import java.awt.event.KeyEvent._
@@ -152,7 +156,7 @@ object PlayMode extends Mode {
     }
     
     projectiles.foreach(_.move)
-    for(p <- projectiles) {
+    for(p <- projectiles.par) {    //Using parallel to improve performance
       if(p.isExpired) {  //Delete expired projectiles
         projectiles = projectiles.filter(x => x != p)
       }

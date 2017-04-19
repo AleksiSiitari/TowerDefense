@@ -1,8 +1,10 @@
-package main
+ package Main
 
 import processing.core._
-import scala.collection.mutable._
-import scala.util._
+import Main._
+import Modes._
+import Enemies._
+import collection.mutable.Map
 
 class Wave(var enemies: Map[String, Int], var winPoints: Int, var spawnDelay: Double) {}
 
@@ -28,8 +30,7 @@ object Spawner {
   
   var waves = Map[Int, Wave](
       1 -> new Wave(
-        Map("normal" -> 1,
-            "motasd" -> 1),// Spawn 1 of these
+        Map("normal" -> 1),// Spawn 1 of these
         50,                 // You get 50 score for beating the wave (modified by difficulty)
         2.00                // And one enemy spawns every 2 second (modified by difficulty)
       ),
@@ -109,6 +110,7 @@ object Spawner {
   def getEnemiesLeft() = {
     //count the number of enemies left
     currentConfig.enemies.values.sum + PlayMode.enemies.size
+    
   }
   
   
@@ -137,7 +139,7 @@ object Spawner {
         if(possible.size > 0) {
           var enemy_type = possible(main.random(0, possible.size).toInt)
           var e = generateEnemy(enemy_type)
-          PlayMode.enemies += e
+          Modes.PlayMode.enemies += e
           currentConfig.enemies(enemy_type) -= 1
           lastSpawn = System.nanoTime()
         }

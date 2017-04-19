@@ -1,6 +1,10 @@
-package main
+ package Towers
 
 import processing.core._
+import Enemies._
+import Modes.PlayMode
+import Main._
+import Graphics._
 
 abstract class Buildable(var position: Vector) {
   var cost: Int

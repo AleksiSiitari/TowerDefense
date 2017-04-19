@@ -1,4 +1,8 @@
-package main
+ package Towers
+
+import Modes.PlayMode
+import Main.Vector
+import Main.main
 
 class LongTower(position: Vector) extends Towers(position: Vector) {
   
