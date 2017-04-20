@@ -24,7 +24,7 @@ import Modes._
 object main extends PApplet {
   
   var f = createFont("Arial", 16, true)
-  var fontColor = (204, 153, 0)
+  var fontColor = (255, 150, 0)
   var mode: Mode = MenuMode
 	var last_update = System.nanoTime()
 	var last_draw = System.nanoTime()
