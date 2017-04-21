@@ -12,16 +12,19 @@ import scala.util._
 
 object PlayMode extends Mode {
   
-  var font = main.createFont("Arial", 16, true)
-  var bigFont = main.createFont("Arial", 24, true)
-  var img = Sprites.get("nebula").get      //Image for the background
+  var font = main.createFont("Arial", 16, true)     // small basic font
+  var bigFont = main.createFont("Arial", 24, true)  // Larger font
+  
+  var img = Sprites.get("nebula").get               //Image for the background
  
-  var enemies = Buffer[Enemy]()
-  var towers = Buffer[Towers]()
-  var projectiles = Buffer[Ammo]()
-  var abilities = Buffer[Ability]()
-  var texts = Buffer[InfoText]()
-  var LargeTexts = Buffer[InfoText]()
+  // Keeping track of different objects ingame
+  var enemies      = Buffer[Enemy]()
+  var towers       = Buffer[Towers]()
+  var projectiles  = Buffer[Ammo]()
+  var abilities    = Buffer[Ability]()
+  var texts        = Buffer[InfoText]()
+  var LargeTexts   = Buffer[InfoText]()
+  
   var time = 0
   
   var btns = Buffer[InGameButton](new InGameButton(0, 606, 64, 64, 1, "towerButton"),
@@ -40,7 +43,9 @@ object PlayMode extends Mode {
                                              btns(5) -> new Tooltips(Vector(256,574), "A short ranged fast shooting tower \n Does not shoot accurately \n $200", 3)
                                              )
 
-  
+  /*
+   * Initialize the Playmode resetting buffers and variables
+   */
   def init () = {
     Spawner.init()
     enemies.clear()
@@ -57,6 +62,9 @@ object PlayMode extends Mode {
     
   }
   
+  /*
+   * 
+   */
   def mousePressed(key: Int) = {
     if (key == 37) {
       if(main.mouseY < 606) {
@@ -155,6 +163,7 @@ object PlayMode extends Mode {
       main.mode = EndMode
     }
     
+    // Update all projectiles
     projectiles.foreach(_.move)
     for(p <- projectiles.par) {    //Using parallel to improve performance
       if(p.isExpired) {  //Delete expired projectiles
@@ -168,6 +177,7 @@ object PlayMode extends Mode {
       }
     }
     
+    // Update all enemies
     for(e <- enemies) {
       e.update
       e.checkForTarget
@@ -181,6 +191,7 @@ object PlayMode extends Mode {
       }
     }
 
+    // Update all towers
     for(t <- towers) {
       t.checkTarget
       if(!t.target.isDefined){
@@ -191,6 +202,7 @@ object PlayMode extends Mode {
       }
     }
     
+    // Update all abilities
     for(a <- abilities) {
       if(a.isExpired) {
         abilities = abilities.filter(x => x != a)              //FIXME: Crashes the game if more than one ability active

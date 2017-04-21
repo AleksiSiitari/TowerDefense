@@ -35,6 +35,9 @@ object main extends PApplet {
 	  Vector(mouseX, mouseY)
 	}
   
+  /*
+   * Return a distance between two vectors
+   */
   def distance(one: Vector, another: Vector): Double = {
     sqrt(pow((another.x - one.x),2) + pow((another.y-one.y),2))
   }
@@ -67,9 +70,11 @@ object main extends PApplet {
 
   }
 	
+  /*
+   * Send the mouse button pressed to the mode
+   */
   override def mousePressed = {
-    // Send the mouse button pressed to the mode
-    mode.mousePressed(mouseButton)
+        mode.mousePressed(mouseButton)
   }
   
   override def keyPressed() = {

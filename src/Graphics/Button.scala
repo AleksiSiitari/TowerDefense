@@ -2,6 +2,9 @@ package Graphics
 
 import Main._
 
+/*
+ * Class for general purpose buttons
+ */
 class Button(var x: Int, var y: Int, var w: Int, var h: Int, var text: String) {
   var hover = false
   val blur = Sprites.get("buttonBlur")

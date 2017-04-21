@@ -5,7 +5,11 @@ import Graphics.Sprites
 import Enemies._
 import Main._
 
+/*
+ * Class for the projectiles the towers shoot
+ */
 class Ammo(start: Vector, target: Vector, spawnTime: Long, DMG: Int) {
+ 
   var position: Vector = start
   var loadedImage : Option[PImage] = None
   var speed: Int = 4
@@ -13,6 +17,9 @@ class Ammo(start: Vector, target: Vector, spawnTime: Long, DMG: Int) {
   var moveVector = (this.target - this.position).normalized()*this.speed
   var damage: Int = 40
 
+  /*
+   * Keeps track of the time each ammunition has existed
+   */
   def elapsedTime = {
     (System.nanoTime() - spawnTime)/1e9
   }
@@ -23,10 +30,16 @@ class Ammo(start: Vector, target: Vector, spawnTime: Long, DMG: Int) {
   
   def remove = {???}
   
+  /*
+   * Check if this ammunition is touching certain Enemy e
+   */
   def collides(e: Enemy) = {
     this.position.distanceToPoint(e.position /*- main.offset*/) < 20
   }
     
+  /*
+   * Move this ammunition towards its target
+   */
   def move = this.position += moveVector
   
   def image() = {

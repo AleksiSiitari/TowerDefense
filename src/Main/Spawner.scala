@@ -6,8 +6,14 @@ import Modes._
 import Enemies._
 import collection.mutable.Map
 
-class Wave(var enemies: Map[String, Int], var winPoints: Int, var spawnDelay: Double) {}
+/*
+ * Class for individual waves
+ */
+class Wave(var enemies: Map[String, Int], var winPoints: Int, var spawnDelay: Double) 
 
+/*
+ * Companion object for the Wave class
+ */
 object Wave {
   def apply(w: Wave) = {
     var counts = Map[String, Int]()
@@ -16,10 +22,12 @@ object Wave {
   }
 }
 
+/*
+ * Object for spawning enemies according to the waves
+ */
 object Spawner {
   
   var timeBetweenWaves = 10.0
-  
   var waveNum = 0
   var nextWaveStart = System.nanoTime() + timeBetweenWaves*1e9
   var waveOn = false
@@ -27,7 +35,7 @@ object Spawner {
   var lastSpawn = System.nanoTime()
   var waveEnded = 0l  
   
-  
+  // Information about the waves in game 
   var waves = Map[Int, Wave](
       1 -> new Wave(
         Map("normal" -> 1),// Spawn 1 of these
@@ -73,11 +81,13 @@ object Spawner {
       )
   )
     
-    
+  /*
+   * Decide which wave to use
+   */
   def setWaveConfiguration() = {
-    if(waves.get(waveNum).isDefined) {  // This wave has been defined, use it
+    if(waves.get(waveNum).isDefined) {  // if this wave has been defined, use it
       currentConfig = Wave(waves(waveNum))
-    } else {  // If we have no more waves, just keep using the last wave
+    } else {  // else just keep using the last wave
       currentConfig =  Wave(waves(waves.keys.max))
     }
   }
@@ -88,7 +98,10 @@ object Spawner {
     waveOn = false
   }
       
-  def timeUntilNextWave = {      //TODO: implement a way to skip the waiting
+  /*
+   * Count the time until next wave
+   */
+  def timeUntilNextWave = {
     if(waveOn) {
       0
     } else {
@@ -97,32 +110,33 @@ object Spawner {
     }
   }
   
-  def shouldDisplayWaveWin() = {
-    // Display the waveWin for 5 seconds
-    (System.nanoTime() - waveEnded)/1e9 < 5
+  // Indicates if wave winning text should be displayed
+  def shouldDisplayWaveWin(): Boolean = {
+        (System.nanoTime() - waveEnded)/1e9 < 5
   }
   
+  // Display this after you win a round
   def waveWinString() = {
-    // Display this after you win a round
     s"Wave ${waveNum} ended!"
   }
   
+  // Count the number of enemies left
   def getEnemiesLeft() = {
-    //count the number of enemies left
     currentConfig.enemies.values.sum + PlayMode.enemies.size
-    
   }
   
-  
+  // Display texts about wave
   def getWaveString() = {
-    // What is displayed at the bottom of the game
-    if(waveOn) {
+        if(waveOn) {
       s"Wave ${waveNum} with ${getEnemiesLeft} enemies left!"
     } else {
       "New wave starting in "+ f"$timeUntilNextWave%1.1f" + " seconds!"
     }
   }
   
+  /*
+   * Updates the wave status 
+   */
   def updateWaveStatus() = {
     if(!waveOn) {
       if(timeUntilNextWave <= 0) {  // Time between rounds ran out, start a new wave
@@ -154,6 +168,9 @@ object Spawner {
     }  
   }
   
+  /*
+   * Generate enemies from the names
+   */
   def generateEnemy(name: String): Enemy = {
     if(name == "normal") {
       new BasicEnemy()
