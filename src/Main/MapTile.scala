@@ -27,46 +27,8 @@ object GameMap {
   var generatedMap : PImage = _
   
   var mapTiles = Buffer[String]()
-  /*
-  var mapTiles = Buffer(
-      "*************************",
-      "SSS---------------------*",
-      "SSS---------------------*",
-      "*********************---*",
-      "*------------------**---*",
-      "*------------------**---*",
-      "*---************---**---*",
-      "*---************---**---*",
-      "*-------------**---**---*",
-      "*-------------**--------*",
-      "**********----**--------*",
-      "**********----***********",
-      "***-----------***********",
-      "***-----------***********",
-      "***----******************",
-      "***----******************",
-      "***----------------------",
-      "***----------------------",
-      "*************************"
-  )
-  */
   var spawnerLocations = Buffer[Vector]()
   var endLocation = Buffer[Vector]()
- 
-/*
-  for(x <- 0 until width; y <- 0 until height) {
-    var id = "tile_mud"
-    var solid = false
-    
-    if(mapTiles(y)(x) == '*') {
-      id = "tile_wall"
-      solid = true
-    }
-    
-    blocks(x)(y) = new MapTile(id, x, y, solid)
-  }
-  * 
-  */
 
   /*
    * Loads the map from file
@@ -81,7 +43,9 @@ object GameMap {
     }
   }
   
-  // Draws the blocks in the map
+  /*
+   *  Draws the Groundblocks in the map
+   */
   def drawGround() = {
     for(x <- 0 until width; y <- 0 until height) {
       // Draw each block individually
@@ -89,7 +53,10 @@ object GameMap {
       blocks(x)(y).draw
     }
   }
-  
+  /*
+   * Draw the walls of the map
+   * Separate functions for ground and walls to stop abilities from showing up on top of the walls etc.
+   */
   def drawWalls() = {
     for(x <- 0 until width; y <- 0 until height) {
       if(blocks(x)(y).solid) {
@@ -98,8 +65,9 @@ object GameMap {
     }
   }
   
-  // Gets the tile at coordinate x, y
-
+  /*
+   *  Gets the tile at coordinate x, y
+   */
   def getTile(x: Double, y: Double) : MapTile = {
     var x_pos = (x/32).toInt
     var y_pos = (y/32).toInt
@@ -112,7 +80,7 @@ object GameMap {
     getTile(pos.x, pos.y)
   }
   /*
-  // Generate the map background from the layout set above
+  // Generate the map image from the buffer
   def generateMapBackground() = {
     var pg = main.createGraphics(main.width, main.height)
     pg.beginDraw()
