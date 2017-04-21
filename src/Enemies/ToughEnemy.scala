@@ -6,7 +6,7 @@ import Main._
 
 class ToughEnemy extends Enemy{
   maxHP = 200
-  HP = 10000
+  HP = 200
   speed = 1.00
   
   var shieldImg = Sprites.get("energyShield").get

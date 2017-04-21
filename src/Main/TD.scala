@@ -66,9 +66,9 @@ object main extends PApplet {
     last_draw = System.nanoTime()
     
     // Debug draw the fps and dt in ms
-    fill(0, 0, 0)
-    textFont(f,15)
-    text(s"${(100.0/(dut)).round.toString} FPS", 25, 40)
+//    fill(0, 0, 0)
+//    textFont(f,15)
+//    text(s"${(100.0/(dut)).round.toString} FPS", 25, 40)
 
   }
 	
@@ -87,7 +87,7 @@ object main extends PApplet {
 
 	
   /**
-   * The main method that makes your application run and show.
+   * The main method that makes the application run and show.
    */
   def main(args: Array[String]) {
     val frame = new javax.swing.JFrame("TowerDefense")

@@ -16,7 +16,7 @@ class Wave(var enemies: Map[String, Int], var winPoints: Int, var spawnDelay: Do
  */
 object Wave {
   def apply(w: Wave) = {
-    var counts = Map[String, Int]()
+    var counts = Map[String, Int]()     // Keep count of enemies to be spawned   
     counts ++= w.enemies
     new Wave(counts, w.winPoints, w.spawnDelay)
   }
@@ -39,45 +39,45 @@ object Spawner {
   var waves = Map[Int, Wave](
       1 -> new Wave(
         Map("normal" -> 1),// Spawn 1 of these
-        50,                 // You get 50 score for beating the wave (modified by difficulty)
-        2.00                // And one enemy spawns every 2 second (modified by difficulty)
+        (50 * Settings.difficultyMultiplier).toInt,                 // Score for beating the wave
+        2.00 - (1 - Settings.difficultyMultiplier)               // Delay between enemies spawning
       ),
       2 -> new Wave(
         Map("normal" -> 3),
-        50,
-        2.00
+        (50 * Settings.difficultyMultiplier).toInt,
+        2.00 - (1 - Settings.difficultyMultiplier)
       ),
       3 -> new Wave(
         Map("normal" -> 7),
-        50,
-        2.00
+        (50 * Settings.difficultyMultiplier).toInt,  
+        2.00 - (1 - Settings.difficultyMultiplier)
       
       ),
       4 -> new Wave(
         Map("normal" -> 10,
             "fast" -> 2),
-        50,
-        2.00
+        (50 * Settings.difficultyMultiplier).toInt,  
+        2.00 - (1 - Settings.difficultyMultiplier)
       ),
       5 -> new Wave(
         Map("normal" -> 15,
             "fast" -> 3,
             "tough" -> 2),
-        75,
-        1.50  
+        (75 * Settings.difficultyMultiplier).toInt,  
+        1.50 - (1 - Settings.difficultyMultiplier)
       ),
       6 -> new Wave(
         Map("mothership" -> 1,
             "normal" -> 10),
-        75,
-        1.50  
+        (75 * Settings.difficultyMultiplier).toInt,  
+        1.50 - (1 - Settings.difficultyMultiplier)
       ),
       7 -> new Wave(
         Map("normal" -> 20,
             "fast" -> 7,
             "tough" -> 5),
-        75,
-        1.00
+        (75 * Settings.difficultyMultiplier).toInt,  
+        1.00 - (1 - Settings.difficultyMultiplier)
       )
   )
     
@@ -127,8 +127,8 @@ object Spawner {
   
   // Display texts about wave
   def getWaveString() = {
-        if(waveOn) {
-      s"Wave ${waveNum} with ${getEnemiesLeft} enemies left!"
+    if(waveOn) {
+      "Wave " + waveNum
     } else {
       "New wave starting in "+ f"$timeUntilNextWave%1.1f" + " seconds!"
     }
@@ -140,6 +140,9 @@ object Spawner {
   def updateWaveStatus() = {
     if(!waveOn) {
       if(timeUntilNextWave <= 0) {  // Time between rounds ran out, start a new wave
+        if (waveNum >= 1) {
+          Player.score += waves(waveNum).winPoints
+        }
         waveNum += 1
         waveOn = true
         setWaveConfiguration()

@@ -6,8 +6,8 @@ import Graphics._
 
 
 class Mothership extends Enemy {
-  maxHP = 700
-  HP = 700
+  maxHP = 1000
+  HP = 1000
   speed = 1.00
   reward = 30
  

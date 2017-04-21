@@ -33,7 +33,7 @@ object GameMap {
   /*
    * Loads the map from file
    */
-  def loadMap = {
+  def loadMap() = {
     try {
       for(line <- scala.io.Source.fromFile(filename).getLines()) {
         mapTiles += line

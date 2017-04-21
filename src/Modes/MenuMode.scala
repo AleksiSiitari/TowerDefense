@@ -10,6 +10,10 @@ object MenuMode extends Mode {
   var showCredits = false
   var showInstructions = false
   var img = Sprites.get("nebula").get
+  var img2 = Sprites.get("rightClick").get
+  var img3 = Sprites.get("leftClick").get
+  var moneyimg = Sprites.get("money").get
+  var playimg = Sprites.get("playButton").get
   var btns = Map[String, Button](
                   "start" -> new Button(400, 300, 250, 35, "Start"),
                   "settings" -> new Button(400, 400, 250, 35, "Settings"),
@@ -18,8 +22,7 @@ object MenuMode extends Mode {
                   "exit" -> new Button(400, 550, 250, 35, "Exit"))
                   
   var settingsbtns = Map[String, Button](
-                           "sound" -> new Button(400,400,250,35, "Sound"),
-                           "difficulty" -> new Button(400,450, 250,35, "Difficulty"),
+                           "difficulty" -> new Button(400,450, 250,35, Settings.difficultyText),
                            "back" -> new Button(400,500, 250, 35, "Back"))
                            
   var backButton = Map[String, Button]("back" -> new Button(400, 500, 250, 35, "Back"))
@@ -66,6 +69,15 @@ object MenuMode extends Mode {
     }
     else if (showInstructions) {
       backButton.values.foreach(_.draw())
+      main.image(img2, 30, 20)
+      main.image(img3, 30, 100)
+      main.image(moneyimg, 30, 200)
+      main.textAlign(1, 3)
+      main.fill(main.fontColor._1, main.fontColor._2, main.fontColor._3)
+      main.textFont(font)
+      main.text("Left click to select and build", 80, 70)
+      main.text("Right click to clear selection", 80, 150)
+      main.text("Use money to buy towers and use abilities", 180, 220)
     }
     else {
       btns.values.foreach(_.draw())
@@ -75,11 +87,9 @@ object MenuMode extends Mode {
   def mousePressed(key: Int) = {
     if(key == 37) {
       if(settings) {
-        if(settingsbtns("sound").isOn()) {
-          
-        }
-        else if(settingsbtns("difficulty").isOn()) {
-          
+        if(settingsbtns("difficulty").isOn()) {
+          Settings.increaseDifficulty
+          settingsbtns("difficulty").text = Settings.difficultyText
         }
         else if(settingsbtns("back").isOn()) {
           settings = false

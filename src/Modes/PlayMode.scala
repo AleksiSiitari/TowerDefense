@@ -30,9 +30,9 @@ object PlayMode extends Mode {
   var btns = Buffer[InGameButton](new InGameButton(0, 606, 64, 64, 1, "towerButton"),
                                   new InGameButton(64,606, 64, 64, 2, "longTowerButton"),
                                   new InGameButton(512, 606, 64, 64, 10, "playButton"),
-                                  new InGameButton(128, 606, 64, 64, 3, "fire"),
-                                  new InGameButton(192, 606, 64, 64, 4, "ice"),
-                                  new InGameButton(256, 606, 64, 64, 4, "sprayTowerButton")
+                                  new InGameButton(128, 606, 64, 64, 3, "sprayTowerButton"),
+                                  new InGameButton(192, 606, 64, 64, 4, "fire"),
+                                  new InGameButton(256, 606, 64, 64, 4, "ice")
                                   )
                                   
   var tooltips = Map[InGameButton, Tooltips](btns(0) -> new Tooltips(Vector(0,574), "A Basic Tower \n $50", 2),
@@ -178,7 +178,7 @@ object PlayMode extends Mode {
     }
     
     // Update all enemies
-    for(e <- enemies) {
+    for(e <- enemies.par) {
       e.update
       e.checkForTarget
       e.move(e.moveVector)
@@ -192,7 +192,7 @@ object PlayMode extends Mode {
     }
 
     // Update all towers
-    for(t <- towers) {
+    for(t <- towers.par) {
       t.checkTarget
       if(!t.target.isDefined){
         t.getTarget
@@ -203,7 +203,7 @@ object PlayMode extends Mode {
     }
     
     // Update all abilities
-    for(a <- abilities) {
+    for(a <- abilities.par) {
       if(a.isExpired) {
         abilities = abilities.filter(x => x != a)              //FIXME: Crashes the game if more than one ability active
       }
@@ -216,12 +216,12 @@ object PlayMode extends Mode {
     
     
     /* Check for expired texts */
-    for(i <- texts) {
+    for(i <- texts.par) {
       if(i.isExpired) {                //FIXME: Does not remove expired texts properly
         texts.filter(_ != i)
       }
     }
-    for(i <- LargeTexts) {
+    for(i <- LargeTexts.par) {
       if(i.isExpired) {
         LargeTexts.filter(_ != i)
       }

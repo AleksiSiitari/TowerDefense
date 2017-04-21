@@ -32,14 +32,5 @@ object GUI {
     main.textAlign(1,3)
     main.textFont(f, 25)
     main.text("Lives: " + Player.lives, 10, 10)
-//	  main.image(rectImage, 0,605)
-//	  main.image(rectImage, 64, 605)
-//	  main.image(rectImage, 128, 605)
-//	  main.image(rectImage, 192, 605)
-//	  main.image(rectImage, 256, 605)
-//	  main.image(rectImage, 320, 605)
-//	  main.image(rectImage, 384, 605)
-//	  main.image(rectImage, 448, 605) 
-//    main.image(playImage, 525 ,606)
   }
 }
