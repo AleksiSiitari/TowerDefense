@@ -15,7 +15,7 @@ abstract class Enemy {
   var position: Vector = Vector(0,0)
   var loadedImage : Option[PImage] = None
   var curTarget = 0
-  var target = Path1.points(curTarget)
+  var target = Path.points(curTarget)
   var rand = new Random
   var image_id = "ufoRed"
   var frame = 0
@@ -71,14 +71,14 @@ abstract class Enemy {
   }
   
   def checkForTarget = {
-    if ( this.position.distanceToPoint(this.target) < 10 && this.curTarget < Path1.points.length) {
-      if(curTarget == Path1.points.length-1) {  //Has reached the end
+    if ( this.position.distanceToPoint(this.target) < 10 && this.curTarget < Path.points.length) {
+      if(curTarget == Path.points.length-1) {  //Has reached the end
         this.HP = 0
         Player.lives -= 1
       }
       else {
         curTarget = curTarget + 1
-        target = Path1.points(curTarget)
+        target = Path.points(curTarget)
       }
     }
   }

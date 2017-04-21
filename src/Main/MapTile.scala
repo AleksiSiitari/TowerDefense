@@ -2,6 +2,7 @@ package Main
 
 import scala.collection.mutable.Buffer
 import processing.core._
+import scala.io.Source._
 import Graphics.Sprites
 
 
@@ -22,8 +23,11 @@ object GameMap {
   val height = 19
   
   val blocks = Array.ofDim[MapTile](width, height)
+  val filename = "resources/map.txt"
   var generatedMap : PImage = _
   
+  var mapTiles = Buffer[String]()
+  /*
   var mapTiles = Buffer(
       "*************************",
       "SSS---------------------*",
@@ -45,7 +49,7 @@ object GameMap {
       "***----------------------",
       "*************************"
   )
-  
+  */
   var spawnerLocations = Buffer[Vector]()
   var endLocation = Buffer[Vector]()
  
@@ -64,6 +68,18 @@ object GameMap {
   * 
   */
 
+  /*
+   * Loads the map from file
+   */
+  def loadMap = {
+    try {
+      for(line <- scala.io.Source.fromFile(filename).getLines()) {
+        mapTiles += line
+      }
+    } catch {
+      case ex: Exception => println("Error: Corrupted map file")
+    }
+  }
   
   // Draws the blocks in the map
   def drawGround() = {

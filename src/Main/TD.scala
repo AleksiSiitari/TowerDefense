@@ -47,6 +47,8 @@ object main extends PApplet {
   	frameRate(60)
   	background(100)
   	mode.init
+  	GameMap.loadMap
+  	Path.loadPath
   } 
 
   override def draw() : Unit = {
