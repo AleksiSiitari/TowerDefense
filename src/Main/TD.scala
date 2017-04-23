@@ -47,7 +47,7 @@ object main extends PApplet {
   	frameRate(60)
   	background(100)
   	mode.init
-  	GameMap.loadMap
+    GameMap.loadMap
   	Path.loadPath
   } 
 

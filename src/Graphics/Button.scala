@@ -54,12 +54,6 @@ class Button(var x: Int, var y: Int, var w: Int, var h: Int, var text: String) {
   }
   
   def update() = {
-    /*
-    if(!hover && isOn) {
-      Sound.play("menuClick")		//Waiting for sounds
-    }
-    * 
-    */
     hover = isOn
   }
 }

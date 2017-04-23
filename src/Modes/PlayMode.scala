@@ -32,7 +32,7 @@ object PlayMode extends Mode {
                                   new InGameButton(512, 606, 64, 64, 10, "playButton"),
                                   new InGameButton(128, 606, 64, 64, 3, "sprayTowerButton"),
                                   new InGameButton(192, 606, 64, 64, 4, "fire"),
-                                  new InGameButton(256, 606, 64, 64, 4, "ice")
+                                  new InGameButton(256, 606, 64, 64, 5, "ice")
                                   )
                                   
   var tooltips = Map[InGameButton, Tooltips](btns(0) -> new Tooltips(Vector(0,574), "A Basic Tower \n $50", 2),
