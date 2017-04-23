@@ -54,7 +54,8 @@ object Cursor {
         
         case 2 => if (Player.money - towerNum(selected).cost >= 0 ) {
                   PlayMode.towers += new LongTower(GameMap.getTile(main.mouseLocation()).location)
-                  build(selected)                  }
+                  build(selected)                  
+                  }
                   else {
                     noMoney
                   }
