@@ -38,9 +38,9 @@ object PlayMode extends Mode {
   var tooltips = Map[InGameButton, Tooltips](btns(0) -> new Tooltips(Vector(0,574), "A Basic Tower \n $50", 2),
                                              btns(1) -> new Tooltips(Vector(64, 574), "A long range tower \n $200", 2),
                                              btns(2) -> new Tooltips(Vector(512, 574), "Press to start the\n next wave", 2),
-                                             btns(3) -> new Tooltips(Vector(128, 574), "Set a temporary fire \n to damage enemies \n $100", 3),
-                                             btns(4) -> new Tooltips(Vector(192, 574), "Create temporary ice \n to slow enemies \n $50", 3),
-                                             btns(5) -> new Tooltips(Vector(256,574), "A short ranged fast shooting tower \n Does not shoot accurately \n $200", 3)
+                                             btns(3) -> new Tooltips(Vector(128, 574), "A short ranged fast shooting tower \n Does not shoot accurately \n $200", 3 ),
+                                             btns(4) -> new Tooltips(Vector(192, 574), "Set a temporary fire \n to damage enemies \n $100", 3 ),
+                                             btns(5) -> new Tooltips(Vector(256,574), "Create temporary ice \n to slow enemies \n $50", 3)
                                              )
 
   /*

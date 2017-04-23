@@ -17,9 +17,9 @@ object Cursor {
   // Keep example objects so we can get their values in clicked function
   var towerNum = Map[Int, Buildable](1 -> new BasicTower(Vector(0,0)),
                                      2 -> new LongTower(Vector(0,0)),
-                                     3 -> new Fire(Vector(0,0)),
-                                     4 -> new Ice(Vector(0,0)),
-                                     5 -> new SprayTower(Vector(0,0))
+                                     3 -> new SprayTower(Vector(0,0)),
+                                     4 -> new Fire(Vector(0,0)),
+                                     5 -> new Ice(Vector(0,0))
                                     )
                                   
   /*
@@ -44,51 +44,40 @@ object Cursor {
          // When no buildable is selected, do nothing
         case 0 =>
           
-        case 1 => if (Player.money - towerNum(1).cost >= 0 ) {
+        case 1 => if (Player.money - towerNum(selected).cost >= 0 ) {
                   PlayMode.towers += new BasicTower(GameMap.getTile(main.mouseLocation()).location)
-                  Player.money -= towerNum(1).cost
-                  Player.moneySpent += towerNum(1).cost
-                  PlayMode.LargeTexts += new InfoText(Vector(670, 575), System.nanoTime(), "$ - " + towerNum(1).cost, 255,150,0,40)
+                  build(selected)
                   }
                   else {
-                    PlayMode.texts += new InfoText(main.mouseLocation(), System.nanoTime(), "Not Enough money!", 255,0,0,14)
+                    noMoney
                   }
         
-        case 2 => if (Player.money - towerNum(2).cost >= 0 ) {
+        case 2 => if (Player.money - towerNum(selected).cost >= 0 ) {
                   PlayMode.towers += new LongTower(GameMap.getTile(main.mouseLocation()).location)
-                  Player.money -= towerNum(2).cost
-                  Player.moneySpent += towerNum(2).cost
-                  PlayMode.LargeTexts += new InfoText(Vector(670, 575), System.nanoTime(), "$ - " + towerNum(2).cost, 255,150,0,40)
-                  }
+                  build(selected)                  }
                   else {
-                    PlayMode.texts += new InfoText(main.mouseLocation(), System.nanoTime(), "Not Enough money!", 255,0,0,14)
+                    noMoney
                   }
-        case 3 => if (Player.money - towerNum(3).cost >= 0) {
-                  PlayMode.abilities += new Fire(GameMap.getTile(main.mouseLocation()).location)
-                  Player.money -= towerNum(3).cost
-                  Player.moneySpent += towerNum(3).cost
-                  PlayMode.LargeTexts += new InfoText(Vector(670, 575), System.nanoTime(), "$ - " + towerNum(3).cost, 255,150,0,40)
-                  }
-                  else {
-                    PlayMode.texts += new InfoText(main.mouseLocation(), System.nanoTime(), "Not Enough money!", 255,0,0,14)
-                  }
-        case 4 => if (Player.money - towerNum(4).cost >= 0) {
-                  PlayMode.abilities += new Ice(GameMap.getTile(main.mouseLocation()).location)
-                  Player.money -= towerNum(4).cost
-                  Player.moneySpent += towerNum(4).cost
-                  PlayMode.LargeTexts += new InfoText(Vector(670, 575), System.nanoTime(), "$ - " + towerNum(4).cost, 255,150,0,40)
-                  }
-                  else {
-                    PlayMode.texts += new InfoText(main.mouseLocation(), System.nanoTime(), "Not Enough money!", 255,0,0,14)
-                  }
-        case 5 => if (Player.money - towerNum(5).cost >= 0) {
+        case 3 => if (Player.money - towerNum(selected).cost >= 0) {
                   PlayMode.towers += new SprayTower(GameMap.getTile(main.mouseLocation()).location)
-                  Player.money -= towerNum(5).cost
-                  Player.moneySpent += towerNum(5).cost
-                  PlayMode.LargeTexts += new InfoText(Vector(670, 575), System.nanoTime(), "$ - " + towerNum(5).cost, 255,150,0,40)
+                  build(selected)
                   }
                   else {
-                    PlayMode.texts += new InfoText(main.mouseLocation(), System.nanoTime(), "Not Enough money!", 255,0,0,14)
+                    noMoney
+                  }
+        case 4 => if (Player.money - towerNum(selected).cost >= 0) {
+                  PlayMode.abilities += new Fire(GameMap.getTile(main.mouseLocation()).location)
+                  build(selected)
+                  }
+                  else {
+                    noMoney
+                  }
+        case 5 => if (Player.money - towerNum(selected).cost >= 0) {
+                  PlayMode.abilities += new Ice(GameMap.getTile(main.mouseLocation()).location)
+                  build(selected)
+                  }
+                  else {
+                    noMoney
                   }
       }
     }
@@ -97,6 +86,20 @@ object Cursor {
     }
     
   }
+  
+  /*
+   * Basic stuff involved in building that is same for all towers and abilities
+   */
+  def build(number :Int) = {
+    Player.money -= towerNum(number).cost
+    Player.moneySpent += towerNum(number).cost
+    PlayMode.LargeTexts += new InfoText(Vector(670, 575), System.nanoTime(), "$ - " + towerNum(number).cost, 255,150,0,40)
+  }
+  
+  /*
+   * info text when player has no money and tries to build
+   */
+  def noMoney = PlayMode.texts += new InfoText(main.mouseLocation(), System.nanoTime(), "Not Enough money!", 255,0,0,14)
   
   /*
    * Indicates if cursor is hovering over any tower

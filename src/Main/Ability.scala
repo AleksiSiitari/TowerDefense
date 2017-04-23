@@ -61,7 +61,7 @@ class Ice(location: Vector) extends Ability(location: Vector) {
   var cost = 50
   
   def effect(enemy: Enemy) = {
-    enemy.speed -= 0.001          //TODO: Implement better!  
+    enemy.speed = 0.5          //TODO: Implement better solution!  
   }
   
 }
