@@ -20,6 +20,7 @@ import Modes._
  * -Valikot loppuun
  * -HP indikaattori
  * -Vaihda kuva toughEnemy luokalle
+ * -lisää konfiguroitavuutta
  * 
  */
 object main extends PApplet {

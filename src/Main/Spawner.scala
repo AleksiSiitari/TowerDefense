@@ -48,28 +48,30 @@ object Spawner {
         2.00 - (1 - Settings.difficultyMultiplier)
       ),
       3 -> new Wave(
-        Map("normal" -> 7),
+        Map("normal" -> 7,
+            "fast" -> 1),
         (50 * Settings.difficultyMultiplier).toInt,  
         2.00 - (1 - Settings.difficultyMultiplier)
       
       ),
       4 -> new Wave(
         Map("normal" -> 10,
-            "fast" -> 2),
+            "fast" -> 5),
         (50 * Settings.difficultyMultiplier).toInt,  
         2.00 - (1 - Settings.difficultyMultiplier)
       ),
       5 -> new Wave(
         Map("normal" -> 15,
-            "fast" -> 3,
-            "tough" -> 2),
+            "fast" -> 5,
+            "tough" -> 3),
         (75 * Settings.difficultyMultiplier).toInt,  
         1.50 - (1 - Settings.difficultyMultiplier)
       ),
       6 -> new Wave(
         Map("mothership" -> 1,
             "normal" -> 10,
-            "fast" -> 10),
+            "fast" -> 10,
+            "tough" -> 5),
         (75 * Settings.difficultyMultiplier).toInt,  
         1.50 - (1 - Settings.difficultyMultiplier)
       ),
@@ -149,16 +151,13 @@ object Spawner {
   def updateWaveStatus() = {
     if(!waveOn) {
       if(timeUntilNextWave <= 0) {  // Time between rounds ran out, start a new wave
-        if (waveNum >= 1) {
-          Player.score += waves(waveNum).winPoints
-        }
         waveNum += 1
         waveOn = true
         setWaveConfiguration()
       }
     } else {
       (nextWaveStart - System.nanoTime())/1e9
-      if((System.nanoTime() - lastSpawn)/1e9 > currentConfig.spawnDelay /** Settings.spawnMultiplier*/){   //TODO: Implement difficulty settings here!
+      if((System.nanoTime() - lastSpawn)/1e9 > currentConfig.spawnDelay){
         // if been over spawnDelay seconds since last spawn, generate a new enemy
         
         var possible = currentConfig.enemies.filter(_._2 > 0).keys.toArray
@@ -175,7 +174,7 @@ object Spawner {
         waveOn = false
         waveEnded = System.nanoTime()
         nextWaveStart = System.nanoTime() + timeBetweenWaves*1e9
-        Player.score += (currentConfig.winPoints)  //*Settings.getScoreMultiplier()).toInt //TODO: Also difficulty settings here!
+        Player.score += (currentConfig.winPoints) * Settings.difficultyMultiplier.toInt
       }
     }  
   }

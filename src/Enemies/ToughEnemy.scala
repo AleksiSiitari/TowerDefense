@@ -5,8 +5,8 @@ import Graphics._
 import Main._
 
 class ToughEnemy extends Enemy{
-  maxHP = 500
-  HP = 500
+  maxHP = 1000
+  HP = 1000
   speed = 1.00
   
   var shieldImg = Sprites.get("energyShield").get
@@ -27,7 +27,7 @@ class ToughEnemy extends Enemy{
     }
     this.timer -= 1
     if (timer == 0) {
-      HP = 100
+      HP = 150
     }
     
   }
@@ -35,7 +35,7 @@ class ToughEnemy extends Enemy{
   
   override def beingHit(DMG: Int) = {
     this.HP -= DMG
-    if (this.frame <= 0 &&  timer >= 0) {
+    if (this.frame <= 0 &&  timer <= 0) {
       this.frame = 10
     }
   }
