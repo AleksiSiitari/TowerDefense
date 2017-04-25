@@ -79,21 +79,6 @@ object GameMap {
   def getTile(pos: Vector) : MapTile = {
     getTile(pos.x, pos.y)
   }
-  /*
-  // Generate the map image from the buffer
-  def generateMapBackground() = {
-    var pg = main.createGraphics(main.width, main.height)
-    pg.beginDraw()
-    for(x <- 0 until width; y <- 0 until height) {
-      // Draw each block individually
-      blocks(x)(y).draw(pg)
-    }
-    pg.endDraw()
-    GameMap.generatedMap = pg
-  }
-  * 
-  */
-  
  
   def generateMap() = {
     for(x <- 0 until width; y <- 0 until height) {
@@ -107,10 +92,6 @@ object GameMap {
       else if (mapTiles(y)(x) == 'S') {
         spawnerLocations += Vector(x,y)
       }
-
-
-      
-    
     blocks(x)(y) = new MapTile(id, x, y, solid)
   }
     
