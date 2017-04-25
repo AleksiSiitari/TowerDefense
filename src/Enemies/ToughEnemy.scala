@@ -5,12 +5,12 @@ import Graphics._
 import Main._
 
 class ToughEnemy extends Enemy{
-  maxHP = 200
-  HP = 200
+  maxHP = 500
+  HP = 500
   speed = 1.00
   
   var shieldImg = Sprites.get("energyShield").get
-  var img = Sprites.get("ufoRedDamaged").get
+  var img = Sprites.get("greenUfo").get
   var img2 = Sprites.get("ufoRedDamaged").get
  
   //Chooses a random spawn positon from all possible

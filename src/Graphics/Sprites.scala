@@ -30,7 +30,8 @@ object Sprites {
       "mothershipDamaged" -> "mothershipDamaged.png",
       "rightClick" -> "rightClick.png",
       "leftClick" -> "leftClick.png",
-      "money" -> "money.png"
+      "money" -> "money.png",
+      "greenUfo" -> "greenUfo.png"
   )
   
   private val imagePath = "resources/images/"

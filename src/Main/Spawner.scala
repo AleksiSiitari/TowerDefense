@@ -68,14 +68,23 @@ object Spawner {
       ),
       6 -> new Wave(
         Map("mothership" -> 1,
-            "normal" -> 10),
+            "normal" -> 10,
+            "fast" -> 10),
         (75 * Settings.difficultyMultiplier).toInt,  
         1.50 - (1 - Settings.difficultyMultiplier)
       ),
       7 -> new Wave(
         Map("normal" -> 20,
-            "fast" -> 7,
-            "tough" -> 5),
+            "fast" -> 10,
+            "tough" -> 10,
+            "mothership" -> 2),
+        (75 * Settings.difficultyMultiplier).toInt,  
+        1.00 - (1 - Settings.difficultyMultiplier)
+      ),
+      8 -> new Wave(
+        Map("fast" -> 30,
+            "tough" -> 15,
+            "mothership" -> 5),
         (75 * Settings.difficultyMultiplier).toInt,  
         1.00 - (1 - Settings.difficultyMultiplier)
       )

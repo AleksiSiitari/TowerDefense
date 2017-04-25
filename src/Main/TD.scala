@@ -8,7 +8,7 @@ import Modes._
 
 
 /*
- * TODO:   
+ * TODO:    
  * 
  * -Lisää torni ja vihollistyyppejä	(vihollinen jolla suojakilpi aluksi ?)
  * -tiedostosta luku esim .txt (yhdistä myös Path ja MapTile)
@@ -19,6 +19,7 @@ import Modes._
  * -Kaikkien tornien kantaman piirtäminen syö liikaa tehoja, muuta piirtämään yksi kerrallaan
  * -Valikot loppuun
  * -HP indikaattori
+ * -Vaihda kuva toughEnemy luokalle
  * 
  */
 object main extends PApplet {
