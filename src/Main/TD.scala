@@ -10,8 +10,7 @@ import Modes._
 /*
  * TODO:
  * 
- * -Lisää torni ja vihollistyyppejä	(vihollinen jolla suojakilpi aluksi ?)
- * -tiedostosta luku esim .txt (yhdistä myös Path ja MapTile)
+ * -Lisää torni ja vihollistyyppejä
  * -lisää tasoja
  * -tekstien yhtenästäminen jne.
  * -animaatiot
