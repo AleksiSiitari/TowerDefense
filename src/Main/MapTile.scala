@@ -1,8 +1,9 @@
 package Main
 
-import scala.collection.mutable.Buffer
+import scala.collection.mutable.Buffer 
 import processing.core._
 import scala.io.Source._
+import java.io._
 import Graphics.Sprites
 
 
@@ -23,24 +24,45 @@ object GameMap {
   val height = 19
   
   val blocks = Array.ofDim[MapTile](width, height)
-  val filename = "resources/map.txt"
+  val filename = new File("./resources/maps")
+  val listOfFiles = filename.list()
   var generatedMap : PImage = _
   
-  var mapTiles = Buffer[String]()
+  var maps: Map[String, Buffer[String]] = Map()            //Keeps track of available maps
+  var paths: Map[String, Buffer[Vector]] = Map()
+  
+  var mapTiles = Buffer[String]()  //VAIHDA OTTAMAAN ARVO ASETUKSISTA
   var spawnerLocations = Buffer[Vector]()
   var endLocation = Buffer[Vector]()
-
+  
+  
   /*
    * Loads the map from file
    */
-  def loadMap() = {
+  def loadMaps() = {
     try {
-      for(line <- scala.io.Source.fromFile(filename).getLines()) {
-        mapTiles += line
+      for (file <- listOfFiles) {
+        var tempMap: Buffer[String] = Buffer()
+        var tempPoints: Buffer[Vector] = Buffer()
+        
+        for(line <- scala.io.Source.fromFile("resources/maps/" + file).getLines()) {
+          if (line(0) == '#') {
+            var actualLine = line.drop(1)
+            var splitLine = actualLine.split(",")
+            tempPoints += Vector(splitLine(0).toDouble, splitLine(1).toDouble)
+          }
+          else {
+            tempMap += line
+          }
+        }
+        maps = maps + (file -> tempMap)            //Adds the current map to all available maps
+        paths = paths + (file -> tempPoints)
       }
     } catch {
       case ex: Exception => println("Error: Corrupted map file")
     }
+    mapTiles = maps.values.head
+    Path.points = paths.values.head
   }
   
   /*

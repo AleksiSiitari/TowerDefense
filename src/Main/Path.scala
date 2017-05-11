@@ -8,7 +8,7 @@ object Path {
   
   val filename = "resources/path.txt"
 
-  def loadPath = {
+  def loadPath = {  //OBSOLETE
     try {
       for(line <- scala.io.Source.fromFile(filename).getLines()) {
         var splitLine = line.split(",")

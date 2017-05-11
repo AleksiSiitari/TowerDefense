@@ -22,6 +22,7 @@ object MenuMode extends Mode {
                   "exit" -> new Button(400, 550, 250, 35, "Exit"))
                   
   var settingsbtns = Map[String, Button](
+                           "map" -> new Button(400, 400, 250, 35, Settings.mapText),
                            "difficulty" -> new Button(400,450, 250,35, Settings.difficultyText),
                            "back" -> new Button(400,500, 250, 35, "Back"))
                            
@@ -87,7 +88,11 @@ object MenuMode extends Mode {
   def mousePressed(key: Int) = {
     if(key == 37) {
       if(settings) {
-        if(settingsbtns("difficulty").isOn()) {
+        if (settingsbtns("map").isOn()) {
+          Settings.changeMap
+          settingsbtns("map").text = Settings.mapText
+        }
+        else if(settingsbtns("difficulty").isOn()) {
           Settings.increaseDifficulty
           settingsbtns("difficulty").text = Settings.difficultyText
         }

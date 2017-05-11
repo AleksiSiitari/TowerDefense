@@ -8,7 +8,7 @@ import Modes._
 
 
 /*
- * TODO:    
+ * TODO:
  * 
  * -Lisää torni ja vihollistyyppejä	(vihollinen jolla suojakilpi aluksi ?)
  * -tiedostosta luku esim .txt (yhdistä myös Path ja MapTile)
@@ -16,7 +16,7 @@ import Modes._
  * -tekstien yhtenästäminen jne.
  * -animaatiot
  * -siirrä tornien kuvia pari pikseliä ylöspäin
- * -Kaikkien tornien kantaman piirtäminen syö liikaa tehoja, muuta piirtämään yksi kerrallaan
+ * -draw ellipse bugi, toteuta tornien kantama jollain muulla tavalla.
  * -Valikot loppuun
  * -HP indikaattori
  * -Vaihda kuva toughEnemy luokalle
@@ -27,7 +27,7 @@ object main extends PApplet {
   
   var f = createFont("Arial", 16, true)
   var fontColor = (255, 150, 0)
-  var mode: Mode = MenuMode
+  var mode: Mode = EndMode
 	var last_update = System.nanoTime()
 	var last_draw = System.nanoTime()
 	var offset = Vector(16,16)       //For compensating the offset in calculations
@@ -48,9 +48,9 @@ object main extends PApplet {
   	size(800, 670)
   	frameRate(60)
   	background(100)
+  	GameMap.loadMaps
+    mode = MenuMode
   	mode.init
-    GameMap.loadMap
-  	Path.loadPath
   } 
 
   override def draw() : Unit = {

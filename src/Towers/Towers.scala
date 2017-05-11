@@ -40,11 +40,11 @@ abstract class Towers(position: Vector) extends Buildable(position: Vector) {
   * Draws the range of the tower
   */
  def drawRange = {
-    main.pushMatrix()
+//    main.pushMatrix()
     main.fill(0, 0, 0, 0)
 //    main.ellipseMode(2)
     main.ellipse(this.position.x+main.offset.x, this.position.y+main.offset.y, this.range.toFloat, this.range.toFloat)
-    main.popMatrix()
+//    main.popMatrix()
   }
   
   def shoot
